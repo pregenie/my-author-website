@@ -1,237 +1,129 @@
-<!-- 
-  My Author Website
-  -----------------
-  Description:
-  This is a single-file website for showcasing multiple books, an introduction to your philosophy, an author biography, and a contact section. 
-  It uses HTML, CSS (with Bootstrap 5), and JavaScript for a modern, responsive, and 3D-inspired look. Font Awesome is used for social media icons.
-
-  Features:
-  - Responsive Navbar linking to Books, Philosophy, About, and Contact sections.
-  - Hero section with your image and a brief welcome message.
-  - Books section displaying book cards with cover images, descriptions, and Amazon links.
-  - Philosophy section for sharing your ideas and approach.
-  - About section detailing your background and journey as an author.
-  - Contact section with a simple contact form and social media icons for further engagement.
-  - Footer displaying copyright information.
-
-  Instructions for Updating:
-  1. Replace any placeholder text as needed.
-  2. Update the image URLs in the Hero and Book sections with your actual images.
-  3. In the Books section, update:
-       - Book titles, descriptions, cover images, and the Amazon purchase links.
-  4. Modify the content in the Philosophy, About, and Contact sections to reflect your unique voice.
-  5. Adjust social media icon links to point to your real profiles.
-  6. To change the design or add more functionality, update the CSS in the <style> block or add your own JavaScript.
-  7. When making changes, commit and push updates to your GitHub repository. If deployed on Netlify, it will automatically update your live site.
-
-  Deployment:
-  - This file can be pushed to a GitHub repository and then linked to Netlify for continuous deployment.
-  - Every push to the repository will trigger a new deployment on Netlify.
-
-  Author: Philip Regenie
-  Date: [Date]
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Books by Philip Regenie</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
-        integrity="sha512-pIVp8a0+Xn8ZVxw9tYpCJtV2d8i9H6cFeqD4Jw1iwJE67z+4bo7+L8I5kPJefUqv8M9Ov/BTJZ0uY3jY5IYw0w==" 
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Materialize CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    main {
+      flex: 1 0 auto;
     }
     /* Hero Section */
     .hero {
       background: linear-gradient(135deg, #667eea, #764ba2);
       color: #fff;
-      padding: 100px 0;
+      padding: 80px 0;
+    }
+    .hero .container {
       text-align: center;
     }
-    /* Author image styling: maximum size is half the viewport width */
+    /* Author image styling: maximum width is half the viewport width */
     .author-img {
       max-width: 50vw;
       height: auto;
     }
-    /* Book card hover effect */
-    .book-card {
-      transition: transform 0.3s;
-    }
-    .book-card:hover {
-      transform: translateY(-5px);
-    }
-    /* Social Icons styling */
-    .social-icons a {
-      color: #333;
-      margin: 0 10px;
-      font-size: 24px;
-      transition: color 0.3s;
-    }
-    .social-icons a:hover {
-      color: #764ba2;
+    .section {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
     }
   </style>
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
-    <div class="container">
-      <a class="navbar-brand" href="#">Philip Regenie</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="#books">Books</a></li>
-          <li class="nav-item"><a class="nav-link" href="#philosophy">Philosophy</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-      </div>
+  <nav class="blue lighten-1">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">Philip Regenie</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#books">Books</a></li>
+        <li><a href="#philosophy">Philosophy</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
   </nav>
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="#books">Books</a></li>
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <!-- Author's image now uses the custom 'author-img' class -->
-      <img src="images/author.jpg" class="rounded-circle mb-3 author-img" alt="Philip Regenie" />
-      <h1 class="display-4">Philip Regenie</h1>
-      <p class="lead">Welcome to my world of books and ideas. Explore my works and join me on this journey of creativity and thought.</p>
-    </div>
-  </section>
-
-  <!-- Books Section -->
-  <section id="books" class="py-5">
-    <div class="container">
-      <h2 class="mb-4 text-center">Books</h2>
-      <div class="row">
-        <!-- Book Card 1 -->
-        <div class="col-md-4 mb-4">
-          <div class="card book-card shadow-sm">
-            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Book Cover 1" />
-            <div class="card-body">
-              <h5 class="card-title">Book Title 1</h5>
-              <p class="card-text">A brief description of the book that entices readers to learn more.</p>
-              <a href="https://www.amazon.com/dp/example1" target="_blank" class="btn btn-primary">Buy on Amazon</a>
-            </div>
-          </div>
-        </div>
-        <!-- Book Card 2 -->
-        <div class="col-md-4 mb-4">
-          <div class="card book-card shadow-sm">
-            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Book Cover 2" />
-            <div class="card-body">
-              <h5 class="card-title">Book Title 2</h5>
-              <p class="card-text">A brief description of the book that entices readers to learn more.</p>
-              <a href="https://www.amazon.com/dp/example2" target="_blank" class="btn btn-primary">Buy on Amazon</a>
-            </div>
-          </div>
-        </div>
-        <!-- Book Card 3 -->
-        <div class="col-md-4 mb-4">
-          <div class="card book-card shadow-sm">
-            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Book Cover 3" />
-            <div class="card-body">
-              <h5 class="card-title">Book Title 3</h5>
-              <p class="card-text">A brief description of the book that entices readers to learn more.</p>
-              <a href="https://www.amazon.com/dp/example3" target="_blank" class="btn btn-primary">Buy on Amazon</a>
-            </div>
-          </div>
-        </div>
-        <!-- Add more book cards as needed -->
+  <main>
+    <!-- Hero Section -->
+    <div class="hero">
+      <div class="container">
+        <img src="images/author.jpg" alt="Philip Regenie" class="circle responsive-img author-img">
+        <h1 class="white-text">Philip Regenie</h1>
+        <p class="white-text flow-text">Welcome to my world of books and ideas. Explore my works and join me on this journey of creativity and thought.</p>
       </div>
     </div>
-  </section>
 
-  <!-- Philosophy Section -->
-  <section id="philosophy" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="mb-4 text-center">My Philosophy</h2>
-      <p class="lead">
-        Here, share your unique perspective on life, creativity, and writing. Let your readers understand the deeper motivations behind your work.
-      </p>
-    </div>
-  </section>
-
-  <!-- About the Author Section -->
-  <section id="about" class="py-5">
-    <div class="container">
-      <h2 class="mb-4 text-center">About the Author</h2>
-      <!-- Detailed biography for Philip Regenie -->
-      <h4 class="text-center mb-4">Philip Regenie – Modern-Day Advocate for Human Freedom and Author of Shadows of Control</h4>
-      <p>
-        Philip Regenie is a fearless truth-seeker and seasoned entrepreneur who has spent decades unraveling the hidden threads that weave through human history and modern society. His work boldly challenges the powerful elites who have, for centuries, sought to control populations and redistribute wealth under carefully constructed plans—not through divine providence, but through deliberate design.
-      </p>
-      <p>
-        A passionate advocate for human dignity and resilience, Regenie believes that mankind’s future hinges on understanding and dismantling the four core pillars of societal control: <strong>banking, health, justice, and communication</strong>. He argues that these systems, manipulated by generations of powerful actors, are the true battlegrounds for human freedom. His latest work, <em>Shadows of Control</em>, peels back the layers of history to expose how these institutions have been shaped by calculated manipulation to serve the few at the expense of the many.
-      </p>
-      <p>
-        Philip’s life is a testament to experience and observation. From his early days immersed in the counterculture movement to founding groundbreaking companies in health technology, his journey is guided by a relentless pursuit of truth and innovation. His belief is rooted in the idea that humanity is not bound by fate or divine providence, but by carefully orchestrated plans that shape the world around us—plans that can and must be confronted.
-      </p>
-      <p>
-        A modern-day Thomas Paine, Regenie is driven by a profound hope for the future. His writing is a call to arms for those willing to rise above the shadows and reclaim their autonomy. Philip’s vision for a just and equitable world is one where health is not commodified, justice is not selective, and communication is free from manipulation.
-      </p>
-      <p>
-        His work speaks not just to the challenges we face but to the immense potential of humanity to rise, resist, and rebuild. Philip Regenie invites readers on a journey to recognize the unseen forces shaping our lives and inspires them to imagine a better future—one built on transparency, integrity, and the inherent strength of the human spirit.
-      </p>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="mb-4 text-center">Contact & Comments</h2>
-      <div class="row">
-        <!-- Contact Form -->
-        <div class="col-md-6">
-          <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
-            <div class="mb-3">
-              <label for="name" class="form-label">Name:</label>
-              <input type="text" id="name" name="name" class="form-control" required />
+    <!-- Books Section -->
+    <div id="books" class="section">
+      <div class="container">
+        <h2 class="center">Books</h2>
+        <div class="row">
+          <!-- Book Card 1 -->
+          <div class="col s12 m4">
+            <div class="card">
+              <div class="card-image">
+                <img src="https://via.placeholder.com/300x200" alt="Book Cover 1">
+              </div>
+              <div class="card-content">
+                <span class="card-title">Book Title 1</span>
+                <p>A brief description of the book that entices readers to learn more.</p>
+              </div>
+              <div class="card-action">
+                <a href="https://www.amazon.com/dp/example1" target="_blank">Buy on Amazon</a>
+              </div>
             </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email:</label>
-              <input type="email" id="email" name="email" class="form-control" required />
+          </div>
+          <!-- Book Card 2 -->
+          <div class="col s12 m4">
+            <div class="card">
+              <div class="card-image">
+                <img src="https://via.placeholder.com/300x200" alt="Book Cover 2">
+              </div>
+              <div class="card-content">
+                <span class="card-title">Book Title 2</span>
+                <p>A brief description of the book that entices readers to learn more.</p>
+              </div>
+              <div class="card-action">
+                <a href="https://www.amazon.com/dp/example2" target="_blank">Buy on Amazon</a>
+              </div>
             </div>
-            <div class="mb-3">
-              <label for="comment" class="form-label">Comment:</label>
-              <textarea id="comment" name="comment" class="form-control" rows="4" required></textarea>
+          </div>
+          <!-- Book Card 3 -->
+          <div class="col s12 m4">
+            <div class="card">
+              <div class="card-image">
+                <img src="https://via.placeholder.com/300x200" alt="Book Cover 3">
+              </div>
+              <div class="card-content">
+                <span class="card-title">Book Title 3</span>
+                <p>A brief description of the book that entices readers to learn more.</p>
+              </div>
+              <div class="card-action">
+                <a href="https://www.amazon.com/dp/example3" target="_blank">Buy on Amazon</a>
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary">Send</button>
-          </form>
-        </div>
-        <!-- Social Icons -->
-        <div class="col-md-6 text-center">
-          <h5>Follow Me</h5>
-          <div class="social-icons mt-3">
-            <a href="https://facebook.com/yourprofile" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://twitter.com/yourprofile" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
           </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="py-4 text-center">
-    <div class="container">
-      <p>&copy; 2025 Philip Regenie. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <!-- Bootstrap JS Bundle (includes Popper) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    <!-- Philosophy Section -->
+    <div id="philosophy" class="section grey lighten-4">
+      <div class="container">
+        <h2 class="center">My Philosophy</h2>
+        
