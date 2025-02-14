@@ -35,6 +35,10 @@
       padding-top: 4rem;
       padding-bottom: 4rem;
     }
+    /* Ensure horizontal cards have some bottom margin */
+    .card.horizontal {
+      margin-bottom: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -72,9 +76,8 @@
     <div id="books" class="section">
       <div class="container">
         <h2 class="center">Books</h2>
-        <div class="row" id="books-content">
-          <!-- Book cards will be injected here dynamically from the JSON file -->
-        </div>
+        <!-- Books will be injected here dynamically as a list of horizontal cards -->
+        <div id="books-content"></div>
       </div>
     </div>
 
@@ -161,7 +164,7 @@
     loadHTML('philosophy-content', 'partials/philosophy.html');
     loadHTML('author-content', 'partials/author.html');
 
-    // Fetch books data from JSON and populate the Books Section dynamically
+    // Fetch books data from JSON and populate the Books Section dynamically as horizontal cards
     fetch('data/books.json')
       .then(response => response.json())
       .then(data => {
@@ -169,17 +172,19 @@
         let html = '';
         data.forEach(book => {
           html += `
-            <div class="col s12 m4">
-              <div class="card">
+            <div class="col s12">
+              <div class="card horizontal">
                 <div class="card-image">
                   <img src="${book.image}" alt="${book.title}">
                 </div>
-                <div class="card-content">
-                  <span class="card-title">${book.title}</span>
-                  <p>${book.description}</p>
-                </div>
-                <div class="card-action">
-                  <a href="${book.amazonUrl}" target="_blank">Buy on Amazon</a>
+                <div class="card-stacked">
+                  <div class="card-content">
+                    <span class="card-title">${book.title}</span>
+                    <p>${book.description}</p>
+                  </div>
+                  <div class="card-action">
+                    <a href="${book.amazonUrl}" target="_blank">Buy on Amazon</a>
+                  </div>
                 </div>
               </div>
             </div>
