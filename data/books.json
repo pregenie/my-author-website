@@ -3,18 +3,14 @@
     "image": "images/book-cover-1.jpg",
     "title": "Shadows of Control: The Psychopath's Blueprint for History",
     "description": "Shadows of Control explores the role of psychopathy in shaping human history, arguing that many of the world's most powerful leaders and institutions have been built by individuals with little to no empathy. The book presents a deep investigation into historical events, economic structures, media, and governance, linking them to a hidden class of manipulative elites who consolidate power and control societies through deception, coercion, and systemic reinforcement.",
-    "amazonUrl": "https://www.amazon.com/Shadows-Control-Psychopaths-Blueprint-History-ebook/dp/B0DWLS2NHY/ref=sr_1_1?crid=1DMHXJAK2ZEIP&dib=eyJ2IjoiMSJ9.u7tb0D2cT5GpHFdS3YkZW36_0Y8HJkGDkM2eMsNZJjc.S_GezLT2TR3sC4KvQCCsWfrge4XBqr2VPyyxsB14xS0&dib_tag=se&keywords=philip+regenie&qid=1739494459&sprefix=philip+%2Caps%2C2251&sr=8-1"
+    "amazonUrl": "https://www.amazon.com/Shadows-Control-Psychopaths-Blueprint-History-ebook/dp/B0DWLS2NHY/ref=sr_1_1?crid=1DMHXJAK2ZEIP&dib=eyJ2IjoiMSJ9.u7tb0D2cT5GpHFdS3YkZW36_0Y8HJkGDkM2eMsNZJjc.S_GezLT2TR3sC4KvQCCsWfrge4XBqr2VPyyxsB14xS0&dib_tag=se&keywords=philip+regenie&qid=1739494459&sprefix=philip+%2Caps%2C2251&sr=8-1",
+    "pusblished": False
   },
   {
     "image": "images/book-cover-2.jpg",
     "title": "A Cow King's Gas Mask",
     "description": " In a world where the absurd reigns supreme, <em>A Cow King's Gas Mask</em> gallops onto the scene with a horn-blaring challenge to convention. When a wise yet irreverent bovine sovereign dons a mysterious gas mask, he becomes the unlikely symbol of resistance against an oppressive, clouded reality. Philip Regenie weaves a surreal tale of power, protection, and protest, using biting humor to expose the contradictions of modern society. Part political satire, part fable, and all heart, this book invites readers to question who truly holds the reins of control—and whether safety is just another mask we wear.",
-    "amazonUrl": "https://www.amazon.com/dp/example2"
-  },
-  {
-    "image": "images/book-cover-3.jpg",
-    "title": "Book Title 3",
-    "description": "A brief description of Book Title 3 that entices readers to learn more.",
-    "amazonUrl": "https://www.amazon.com/dp/example3"
+    "amazonUrl": "https://www.amazon.com/dp/example2",
+    "pusblished": False
   }
 ]
