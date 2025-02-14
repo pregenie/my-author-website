@@ -8,17 +8,14 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- Google Fonts for elegant typography -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Google Font for overlay only -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       display: flex;
       min-height: 100vh;
       flex-direction: column;
-      font-family: 'Lora', serif;
-    }
-    h1, h2, h3, h4, h5, h6, .brand-logo {
-      font-family: 'Playfair Display', serif;
+      /* Use default system fonts for all text */
     }
     main {
       flex: 1 0 auto;
@@ -77,8 +74,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8em;
-      text-transform: uppercase;
+      font-size: 2.5em;
+      font-family: 'Playfair Display', serif;
+      text-transform: capitalize;
       font-weight: bold;
       pointer-events: none;
       transform: rotate(-5deg);
@@ -260,4 +258,3 @@
   </script>
 </body>
 </html>
-
