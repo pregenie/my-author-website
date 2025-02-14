@@ -13,13 +13,13 @@
   },
   {
     "name": "Instagram",
-    "icon": "images/instagram",
+    "icon": "images/instagram.svg",
     "url": "https://instagram.com/yourprofile",
     "color": "deep-orange"
   },
   {
     "name": "Goodreads",
-    "icon": "images/goodreads",
+    "icon": "images/goodreads.svg",
     "url": "https://goodreads.com/yourprofile",
     "color": "brown darken-1"
   }
