@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Facebook",
+    "icon": "facebook",
+    "url": "https://facebook.com/yourprofile",
+    "color": "blue darken-4"
+  },
+  {
+    "name": "X",
+    "icon": "twitter",
+    "url": "https://x.com/yourprofile",
+    "color": "light-blue darken-3"
+  },
+  {
+    "name": "Instagram",
+    "icon": "camera_alt",
+    "url": "https://instagram.com/yourprofile",
+    "color": "deep-orange"
+  },
+  {
+    "name": "Goodreads",
+    "icon": "menu_book",
+    "url": "https://goodreads.com/yourprofile",
+    "color": "brown darken-1"
+  }
+]
