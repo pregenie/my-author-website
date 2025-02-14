@@ -126,4 +126,84 @@
     <div id="philosophy" class="section grey lighten-4">
       <div class="container">
         <h2 class="center">My Philosophy</h2>
-        
+        <!-- External philosophy content loaded here -->
+        <div id="philosophy-content"></div>
+      </div>
+    </div>
+
+    <!-- About the Author Section -->
+    <div id="about" class="section">
+      <div class="container">
+        <h2 class="center">About the Author</h2>
+        <!-- External author content loaded here -->
+        <div id="author-content"></div>
+      </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="section grey lighten-4">
+      <div class="container">
+        <h2 class="center">Contact & Comments</h2>
+        <div class="row">
+          <div class="col s12 m6">
+            <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+              <div class="input-field">
+                <input id="name" type="text" name="name" required>
+                <label for="name">Name</label>
+              </div>
+              <div class="input-field">
+                <input id="email" type="email" name="email" required>
+                <label for="email">Email</label>
+              </div>
+              <div class="input-field">
+                <textarea id="comment" name="comment" class="materialize-textarea" required></textarea>
+                <label for="comment">Comment</label>
+              </div>
+              <button type="submit" class="btn blue lighten-1">Send</button>
+            </form>
+          </div>
+          <div class="col s12 m6 center">
+            <h5>Follow Me</h5>
+            <div>
+              <a href="https://facebook.com/yourprofile" target="_blank" class="btn-floating blue darken-4"><i class="material-icons">facebook</i></a>
+              <a href="https://twitter.com/yourprofile" target="_blank" class="btn-floating light-blue darken-3"><i class="material-icons">twitter</i></a>
+              <a href="https://instagram.com/yourprofile" target="_blank" class="btn-floating deep-orange"><i class="material-icons">camera_alt</i></a>
+              <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn-floating blue darken-1"><i class="material-icons">linkedin</i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="page-footer blue lighten-1">
+    <div class="container center">
+      <p>&copy; 2025 Philip Regenie. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    // Initialize Sidenav for mobile navigation
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
+    });
+
+    // Function to load external HTML content into placeholders
+    function loadHTML(id, url) {
+      fetch(url)
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById(id).innerHTML = html;
+        })
+        .catch(error => console.error('Error loading ' + url + ':', error));
+    }
+    // Load external content into the philosophy and about sections
+    loadHTML('philosophy-content', 'partials/philosophy.html');
+    loadHTML('author-content', 'partials/author.html');
+  </script>
+</body>
+</html>
