@@ -15,7 +15,7 @@
       display: flex;
       min-height: 100vh;
       flex-direction: column;
-      /* Use default system fonts for all text */
+      /* Using system default for general text */
     }
     main {
       flex: 1 0 auto;
@@ -92,6 +92,10 @@
       text-decoration: none;
       display: inline-block;
       margin-top: 8px;
+    }
+    .amazon-btn.disabled {
+      opacity: 0.5;
+      pointer-events: none;
     }
     @media screen and (max-width: 600px) {
       .custom-card {
@@ -246,7 +250,9 @@
                   ${!book.published ? '<div class="overlay">Coming Soon</div>' : ''}
                   <h5>${book.title}</h5>
                   <p>${book.description}</p>
-                  <a href="${book.amazonUrl}" target="_blank" class="amazon-btn">Buy on Amazon</a>
+                  ${book.published 
+                    ? `<a href="${book.amazonUrl}" target="_blank" class="amazon-btn">Buy on Amazon</a>`
+                    : `<span class="amazon-btn disabled">Buy on Amazon</span>`}
                 </div>
               </div>
             </div>
