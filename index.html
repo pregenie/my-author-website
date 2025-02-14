@@ -45,7 +45,6 @@
       margin-bottom: 16px;
     }
     .image-container {
-      position: relative;
       flex-shrink: 0;
       margin-right: 16px;
     }
@@ -55,20 +54,29 @@
       height: auto;
       border-radius: 4px;
     }
-    /* Overlay for unpublished books */
+    /* Overlay placed over the text area */
+    .card-content {
+      flex: 1;
+      position: relative; /* needed for absolute positioning of overlay */
+    }
     .overlay {
       position: absolute;
-      top: 8px;
-      left: 8px;
-      background-color: rgba(128, 128, 128, 0.8);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(128, 128, 128, 0.8);
       color: #fff;
-      padding: 4px 8px;
-      font-size: 0.8em;
-      transform: rotate(-10deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      text-transform: uppercase;
+      font-weight: bold;
       pointer-events: none;
-    }
-    .custom-card .card-content {
-      flex: 1;
+      /* Slight rotation for effect */
+      transform: rotate(-5deg);
+      border-radius: 4px;
     }
     .amazon-btn {
       background-color: #FF9900;
@@ -217,7 +225,7 @@
     loadHTML('philosophy-content', 'partials/philosophy.html');
     loadHTML('author-content', 'partials/author.html');
 
-    // Fetch books data from JSON and populate the Books Section dynamically as custom horizontal cards
+    // Fetch books data from JSON and populate the Books Section dynamically as custom cards
     fetch('data/books.json')
       .then(response => response.json())
       .then(data => {
@@ -229,9 +237,9 @@
               <div class="custom-card">
                 <div class="image-container">
                   <img src="${book.image}" alt="${book.title}">
-                  ${!book.published ? '<div class="overlay">Coming Soon</div>' : ''}
                 </div>
                 <div class="card-content">
+                  ${!book.published ? '<div class="overlay">Coming Soon</div>' : ''}
                   <h5>${book.title}</h5>
                   <p>${book.description}</p>
                   <a href="${book.amazonUrl}" target="_blank" class="amazon-btn">Buy on Amazon</a>
