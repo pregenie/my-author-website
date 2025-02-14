@@ -35,16 +35,25 @@
       padding-top: 4rem;
       padding-bottom: 4rem;
     }
-    /* Horizontal card styling for Books */
-    .card.horizontal {
-      max-width: 800px;
-      margin: 0 auto 1rem auto;
+    /* Custom horizontal card for books */
+    .custom-card {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      margin-bottom: 16px;
     }
-    .card.horizontal .card-image img {
-      max-width: 150px;
-      width: auto;
+    .custom-card img {
+      max-width: 120px;
+      width: 100%;
+      height: auto;
+      margin-right: 16px;
+      border-radius: 4px;
     }
-    /* Custom Amazon button styling */
+    .custom-card .card-content {
+      flex: 1;
+    }
     .amazon-btn {
       background-color: #FF9900;
       color: #fff !important;
@@ -53,6 +62,19 @@
       text-transform: uppercase;
       font-weight: bold;
       text-decoration: none;
+      display: inline-block;
+      margin-top: 8px;
+    }
+    @media screen and (max-width: 600px) {
+      .custom-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .custom-card img {
+        margin-right: 0;
+        margin-bottom: 16px;
+        max-width: 100%;
+      }
     }
   </style>
 </head>
@@ -91,8 +113,9 @@
     <div id="books" class="section">
       <div class="container">
         <h2 class="center">Books</h2>
-        <!-- Books will be injected here dynamically as horizontal cards -->
-        <div id="books-content"></div>
+        <div id="books-content">
+          <!-- Book cards will be injected here dynamically from JSON -->
+        </div>
       </div>
     </div>
 
@@ -179,7 +202,7 @@
     loadHTML('philosophy-content', 'partials/philosophy.html');
     loadHTML('author-content', 'partials/author.html');
 
-    // Fetch books data from JSON and populate the Books Section dynamically as horizontal cards
+    // Fetch books data from JSON and populate the Books Section dynamically as custom horizontal cards
     fetch('data/books.json')
       .then(response => response.json())
       .then(data => {
@@ -188,18 +211,12 @@
         data.forEach(book => {
           html += `
             <div class="col s12">
-              <div class="card horizontal">
-                <div class="card-image">
-                  <img src="${book.image}" alt="${book.title}">
-                </div>
-                <div class="card-stacked">
-                  <div class="card-content">
-                    <span class="card-title">${book.title}</span>
-                    <p>${book.description}</p>
-                  <div class="card-action">
-                    <a href="${book.amazonUrl}" target="_blank" class="amazon-btn">Buy on Amazon</a>
-                  </div>                    
-                  </div>
+              <div class="custom-card">
+                <img src="${book.image}" alt="${book.title}">
+                <div class="card-content">
+                  <h5>${book.title}</h5>
+                  <p>${book.description}</p>
+                  <a href="${book.amazonUrl}" target="_blank" class="amazon-btn">Buy on Amazon</a>
                 </div>
               </div>
             </div>
