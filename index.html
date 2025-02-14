@@ -15,7 +15,7 @@
       display: flex;
       min-height: 100vh;
       flex-direction: column;
-      /* Using system default for general text */
+      /* Using system default font for general text */
     }
     main {
       flex: 1 0 auto;
@@ -192,12 +192,8 @@
           </div>
           <div class="col s12 m6 center">
             <h5>Follow Me</h5>
-            <div>
-              <a href="https://facebook.com/yourprofile" target="_blank" class="btn-floating blue darken-4"><i class="material-icons">facebook</i></a>
-              <a href="https://twitter.com/yourprofile" target="_blank" class="btn-floating light-blue darken-3"><i class="material-icons">twitter</i></a>
-              <a href="https://instagram.com/yourprofile" target="_blank" class="btn-floating deep-orange"><i class="material-icons">camera_alt</i></a>
-              <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn-floating blue darken-1"><i class="material-icons">linkedin</i></a>
-            </div>
+            <!-- Social links will be injected here dynamically -->
+            <div id="social-links"></div>
           </div>
         </div>
       </div>
@@ -261,6 +257,19 @@
         booksContent.innerHTML = html;
       })
       .catch(error => console.error('Error loading books JSON:', error));
+
+    // Fetch social links from JSON and populate the social links section dynamically
+    fetch('data/social.json')
+      .then(response => response.json())
+      .then(data => {
+        let socialLinksContainer = document.getElementById("social-links");
+        let html = '';
+        data.forEach(site => {
+          html += `<a href="${site.url}" target="_blank" class="btn-floating ${site.color}"><i class="material-icons">${site.icon}</i></a>`;
+        });
+        socialLinksContainer.innerHTML = html;
+      })
+      .catch(error => console.error('Error loading social JSON:', error));
   </script>
 </body>
 </html>
