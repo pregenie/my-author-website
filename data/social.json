@@ -1,25 +1,25 @@
 [
   {
     "name": "Facebook",
-    "icon": "https://cdn.simpleicons.org/facebook",
+    "icon": "images/facebook.svg",
     "url": "https://www.facebook.com/profile.php?id=100084215207012",
     "color": "blue darken-4"
   },
   {
     "name": "X",
-    "icon": "https://cdn.simpleicons.org/twitter",
+    "icon": "images/x.svg,
     "url": "https://x.com/philregenie",
     "color": "light-blue darken-3"
   },
   {
     "name": "Instagram",
-    "icon": "https://cdn.simpleicons.org/instagram",
+    "icon": "images/instagram",
     "url": "https://instagram.com/yourprofile",
     "color": "deep-orange"
   },
   {
     "name": "Goodreads",
-    "icon": "https://cdn.simpleicons.org/goodreads",
+    "icon": "images/goodreads",
     "url": "https://goodreads.com/yourprofile",
     "color": "brown darken-1"
   }
