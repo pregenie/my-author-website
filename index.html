@@ -259,19 +259,19 @@
       .catch(error => console.error('Error loading books JSON:', error));
 
     // Fetch social links from JSON and populate the social links section dynamically
-fetch('data/social.json')
-  .then(response => response.json())
-  .then(data => {
-    let socialLinksContainer = document.getElementById("social-links");
-    let html = '';
-    data.forEach(site => {
-      html += `<a href="${site.url}" target="_blank" class="btn-floating ${site.color}">
-                 <img src="${site.icon}" alt="${site.name} icon" style="width:24px; height:24px;">
-               </a>`;
-    });
-    socialLinksContainer.innerHTML = html;
-  })
-  .catch(error => console.error('Error loading social JSON:', error));
+    fetch('data/social.json')
+      .then(response => response.json())
+      .then(data => {
+        let socialLinksContainer = document.getElementById("social-links");
+        let html = '';
+        data.forEach(site => {
+          html += `<a href="${site.url}" target="_blank" class="btn-floating ${site.color}">
+                     <img src="${site.icon}" alt="${site.name} icon" style="width:24px; height:24px;">
+                   </a>`;
+        });
+        socialLinksContainer.innerHTML = html;
+      })
+      .catch(error => console.error('Error loading social JSON:', error));
 
   </script>
 </body>
