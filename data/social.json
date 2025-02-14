@@ -1,27 +1,26 @@
 [
   {
     "name": "Facebook",
-    "icon": "https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/facebook.svg",
+    "icon": "https://cdn.simpleicons.org/facebook",
     "url": "https://facebook.com/yourprofile",
     "color": "blue darken-4"
   },
   {
     "name": "X",
-    "icon": "https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/twitter.svg",
+    "icon": "https://cdn.simpleicons.org/twitter",
     "url": "https://x.com/yourprofile",
     "color": "light-blue darken-3"
   },
   {
     "name": "Instagram",
-    "icon": "https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/instagram.svg",
+    "icon": "https://cdn.simpleicons.org/instagram",
     "url": "https://instagram.com/yourprofile",
     "color": "deep-orange"
   },
   {
     "name": "Goodreads",
-    "icon": "https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/goodreads.svg",
+    "icon": "https://cdn.simpleicons.org/goodreads",
     "url": "https://goodreads.com/yourprofile",
     "color": "brown darken-1"
   }
 ]
-
