@@ -35,7 +35,7 @@
       padding-top: 4rem;
       padding-bottom: 4rem;
     }
-    /* Custom horizontal card for books */
+    /* Custom card layout for books */
     .custom-card {
       display: flex;
       align-items: center;
@@ -44,12 +44,28 @@
       border-radius: 8px;
       margin-bottom: 16px;
     }
-    .custom-card img {
+    .image-container {
+      position: relative;
+      flex-shrink: 0;
+      margin-right: 16px;
+    }
+    .image-container img {
       max-width: 120px;
       width: 100%;
       height: auto;
-      margin-right: 16px;
       border-radius: 4px;
+    }
+    /* Overlay for unpublished books */
+    .overlay {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background-color: rgba(128, 128, 128, 0.8);
+      color: #fff;
+      padding: 4px 8px;
+      font-size: 0.8em;
+      transform: rotate(-10deg);
+      pointer-events: none;
     }
     .custom-card .card-content {
       flex: 1;
@@ -70,10 +86,9 @@
         flex-direction: column;
         align-items: flex-start;
       }
-      .custom-card img {
+      .image-container {
         margin-right: 0;
         margin-bottom: 16px;
-        max-width: 100%;
       }
     }
   </style>
@@ -212,7 +227,10 @@
           html += `
             <div class="col s12">
               <div class="custom-card">
-                <img src="${book.image}" alt="${book.title}">
+                <div class="image-container">
+                  <img src="${book.image}" alt="${book.title}">
+                  ${!book.published ? '<div class="overlay">Coming Soon</div>' : ''}
+                </div>
                 <div class="card-content">
                   <h5>${book.title}</h5>
                   <p>${book.description}</p>
