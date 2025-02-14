@@ -265,8 +265,8 @@
         let socialLinksContainer = document.getElementById("social-links");
         let html = '';
         data.forEach(site => {
-          html += `<a href="${site.url}" target="_blank" class="btn-floating ${site.color}">
-                     <img src="${site.icon}" alt="${site.name} icon" style="width:26px; height:26px;">
+          html += `<a href="${site.url}" target="_blank" class="btn-floating ${site.color}" style="display: flex; align-items: center; justify-content: center;">
+                     <img src="${site.icon}" alt="${site.name} icon" style="width:26px; height:26px; padding:2px;">
                    </a>`;
         });
         socialLinksContainer.innerHTML = html;
