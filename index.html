@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Books by [Author Name]</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+        integrity="sha512-pIVp8a0+Xn8ZVxw9tYpCJtV2d8i9H6cFeqD4Jw1iwJE67z+4bo7+L8I5kPJefUqv8M9Ov/BTJZ0uY3jY5IYw0w==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      padding: 100px 0;
+      text-align: center;
+    }
+    /* Book card hover effect */
+    .book-card {
+      transition: transform 0.3s;
+    }
+    .book-card:hover {
+      transform: translateY(-5px);
+    }
+    /* Social Icons styling */
+    .social-icons a {
+      color: #333;
+      margin: 0 10px;
+      font-size: 24px;
+      transition: color 0.3s;
+    }
+    .social-icons a:hover {
+      color: #764ba2;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="#">[Author Name]</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#books">Books</a></li>
+          <li class="nav-item"><a class="nav-link" href="#philosophy">Philosophy</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <img src="https://via.placeholder.com/150" class="rounded-circle mb-3" alt="Author Image" />
+      <h1 class="display-4">[Author Name]</h1>
+      <p class="lead">Welcome to my world of books and ideas. Explore my works and join me on this journey of creativity and thought.</p>
+    </div>
+  </section>
+
+  <!-- Books Section -->
+  <section id="books" class="py-5">
+    <div class="container">
+      <h2 class="mb-4 text-center">Books</h2>
+      <div class="row">
+        <!-- Book Card 1 -->
+        <div class="col-md-4 mb-4">
+          <div class="card book-card shadow-sm">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Book Cover 1" />
+            <div class="card-body">
+              <h5 class="card-title">Book Title 1</h5>
+              <p class="card-text">A brief description of the book that entices readers to learn more.</p>
+              <a href="https://www.amazon.com/dp/example1" target="_blank" class="btn btn-primary">Buy on Amazon</a>
+            </div>
+          </div>
+        </div>
+        <!-- Book Card 2 -->
+        <div class="col-md-4 mb-4">
+          <div class="card book-card shadow-sm">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Book Cover 2" />
+            <div class="card-body">
+              <h5 class="card-title">Book Title 2</h5>
+              <p class="card-text">A brief description of the book that entices readers to learn more.</p>
+              <a href="https://www.amazon.com/dp/example2" target="_blank" class="btn btn-primary">Buy on Amazon</a>
+            </div>
+          </div>
+        </div>
+        <!-- Book Card 3 -->
+        <div class="col-md-4 mb-4">
+          <div class="card book-card shadow-sm">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Book Cover 3" />
+            <div class="card-body">
+              <h5 class="card-title">Book Title 3</h5>
+              <p class="card-text">A brief description of the book that entices readers to learn more.</p>
+              <a href="https://www.amazon.com/dp/example3" target="_blank" class="btn btn-primary">Buy on Amazon</a>
+            </div>
+          </div>
+        </div>
+        <!-- Add more book cards as needed -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy Section -->
+  <section id="philosophy" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="mb-4 text-center">My Philosophy</h2>
+      <p class="lead">
+        Here, share your unique perspective on life, creativity, and writing. Let your readers understand the deeper motivations behind your work.
+      </p>
+    </div>
+  </section>
+
+  <!-- About the Author Section -->
+  <section id="about" class="py-5">
+    <div class="container">
+      <h2 class="mb-4 text-center">About the Author</h2>
+      <p>
+        Include a detailed description of your background, influences, and journey as an author. This section is an opportunity to connect with your readers and share your personal story.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="mb-4 text-center">Contact & Comments</h2>
+      <div class="row">
+        <!-- Contact Form -->
+        <div class="col-md-6">
+          <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name:</label>
+              <input type="text" id="name" name="name" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email:</label>
+              <input type="email" id="email" name="email" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label for="comment" class="form-label">Comment:</label>
+              <textarea id="comment" name="comment" class="form-control" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+          </form>
+        </div>
+        <!-- Social Icons -->
+        <div class="col-md-6 text-center">
+          <h5>Follow Me</h5>
+          <div class="social-icons mt-3">
+            <a href="https://facebook.com/yourprofile" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com/yourprofile" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 text-center">
+    <div class="container">
+      <p>&copy; 2025 [Author Name]. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
