@@ -56,6 +56,11 @@
       padding: 100px 0;
       text-align: center;
     }
+    /* Author image styling: maximum size is half the viewport width */
+    .author-img {
+      max-width: 50vw;
+      height: auto;
+    }
     /* Book card hover effect */
     .book-card {
       transition: transform 0.3s;
@@ -98,8 +103,8 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <!-- Author's image referenced from the images folder -->
-      <img src="images/author.jpg" class="rounded-circle mb-3" alt="Philip Regenie" />
+      <!-- Author's image now uses the custom 'author-img' class -->
+      <img src="images/author.jpg" class="rounded-circle mb-3 author-img" alt="Philip Regenie" />
       <h1 class="display-4">Philip Regenie</h1>
       <p class="lead">Welcome to my world of books and ideas. Explore my works and join me on this journey of creativity and thought.</p>
     </div>
