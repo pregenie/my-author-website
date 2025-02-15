@@ -1,75 +1,327 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog Title Here</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Books by Philip Regenie</title>
   <!-- Materialize CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Google Font for overlay only -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    .comment-section {
-      margin-top: 2rem;
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+      /* Using system default font for general text */
     }
-    .rating {
-      margin-bottom: 1rem;
+    main {
+      flex: 1 0 auto;
+    }
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      padding: 80px 0;
+    }
+    .hero .container {
+      text-align: center;
+    }
+    /* Author image styling */
+    .author-img {
+      max-width: 50vw;
+      height: auto;
+    }
+    .section {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+    /* Custom card layout for books */
+    .custom-card {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .image-container {
+      flex-shrink: 0;
+      margin-right: 16px;
+      position: relative;
+    }
+    .image-container img {
+      max-width: 120px;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    /* Overlay placed over the text area */
+    .card-content {
+      flex: 1;
+      position: relative;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: transparent;
+      color: rgba(128, 128, 128, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4em;
+      font-family: 'Playfair Display', serif;
+      text-transform: capitalize;
+      font-weight: bold;
+      pointer-events: none;
+      transform: rotate(-5deg);
+      border-radius: 4px;
+    }
+    .amazon-btn {
+      background-color: #FF9900;
+      color: #fff !important;
+      border-radius: 50px;
+      padding: 10px 20px;
+      text-transform: uppercase;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 8px;
+    }
+    .amazon-btn.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    /* Blog card styling */
+    .blog-card {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .blog-card h5 {
+      margin-top: 0;
+    }
+    /* Social links container: display icons inline with a gap */
+    #social-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+    @media screen and (max-width: 600px) {
+      .custom-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .image-container {
+        margin-right: 0;
+        margin-bottom: 16px;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="container">
-    <h3>Blog Title Here</h3>
-    <h5>Subtitle Here</h5>
-    <p>Blog content goes here…</p>
-    
-    <!-- Comments and Ratings Section -->
-    <div class="comment-section">
-      <h5>Comments</h5>
-      <!-- Existing comments could be listed here -->
-      <div id="comments">
-        <!-- Dynamically loaded or manually added comments -->
+  <!-- Navbar -->
+  <nav class="blue lighten-1">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">Philip Regenie</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#books">Books</a></li>
+        <li><a href="#philosophy">Philosophy</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="#books">Books</a></li>
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <main>
+    <!-- Hero Section -->
+    <div class="hero">
+      <div class="container">
+        <img src="images/author.jpg" alt="Philip Regenie" class="circle responsive-img author-img">
+        <h1 class="white-text">Philip Regenie</h1>
+        <p class="white-text flow-text">Welcome to my world of books and ideas—a place where the stark, unyielding truths of power and human nature are examined with grave seriousness, yet where the absurdity of our reality offers a subtle, unexpected humor. In these pages, you'll confront the cold precision of those who manipulate history and society, and you'll also glimpse the tragic comedy that underpins our shared existence. I invite you to join me on this journey, where earnest inquiry and a quiet, knowing smile coexist in the face of our world’s most unsettling truths.</p>
       </div>
-      
-      <form id="comment-form">
-        <div class="input-field">
-          <input type="text" id="commenter-name" required>
-          <label for="commenter-name">Your Name</label>
+    </div>
+
+    <!-- Books Section -->
+    <div id="books" class="section">
+      <div class="container">
+        <h2 class="center">Books</h2>
+        <div id="books-content">
+          <!-- Book cards will be injected here dynamically from JSON -->
         </div>
-        <div class="input-field rating">
-          <label>Rate this blog:</label>
-          <p>
-            <label>
-              <input name="rating" type="radio" value="1" />
-              <span>1</span>
-            </label>
-            <label>
-              <input name="rating" type="radio" value="2" />
-              <span>2</span>
-            </label>
-            <label>
-              <input name="rating" type="radio" value="3" />
-              <span>3</span>
-            </label>
-            <label>
-              <input name="rating" type="radio" value="4" />
-              <span>4</span>
-            </label>
-            <label>
-              <input name="rating" type="radio" value="5" />
-              <span>5</span>
-            </label>
-          </p>
+      </div>
+    </div>
+
+    <!-- Philosophy Section -->
+    <div id="philosophy" class="section grey lighten-4">
+      <div class="container">
+        <h2 class="center">My Philosophy</h2>
+        <!-- External philosophy content loaded here -->
+        <div id="philosophy-content"></div>
+      </div>
+    </div>
+
+    <!-- About the Author Section -->
+    <div id="about" class="section">
+      <div class="container">
+        <h2 class="center">About the Author</h2>
+        <!-- External author content loaded here -->
+        <div id="author-content"></div>
+      </div>
+    </div>
+
+    <!-- Blog Section -->
+    <div id="blog" class="section">
+      <div class="container">
+        <h2 class="center">Blog</h2>
+        <div id="blog-content">
+          <!-- Blog posts will be injected here dynamically from JSON -->
         </div>
-        <div class="input-field">
-          <textarea id="comment-text" class="materialize-textarea" required></textarea>
-          <label for="comment-text">Your Comment</label>
+      </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="section grey lighten-4">
+      <div class="container">
+        <h2 class="center">Contact & Comments</h2>
+        <div class="row">
+          <div class="col s12 m6">
+            <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+              <div class="input-field">
+                <input id="name" type="text" name="name" required>
+                <label for="name">Name</label>
+              </div>
+              <div class="input-field">
+                <input id="email" type="email" name="email" required>
+                <label for="email">Email</label>
+              </div>
+              <div class="input-field">
+                <textarea id="comment" name="comment" class="materialize-textarea" required></textarea>
+                <label for="comment">Comment</label>
+              </div>
+              <button type="submit" class="btn blue lighten-1">Send</button>
+            </form>
+          </div>
+          <div class="col s12 m6 center-align">
+            <h5>Follow Me</h5>
+            <!-- Social links will be injected here dynamically -->
+            <div id="social-links"></div>
+          </div>
         </div>
-        <button type="submit" class="btn blue lighten-1">Submit Comment</button>
-      </form>
+      </div>
     </div>
   </main>
-  
+
+  <!-- Footer -->
+  <footer class="page-footer blue lighten-1">
+    <div class="container center">
+      <p>&copy; 2025 Philip Regenie. All rights reserved.</p>
+    </div>
+  </footer>
+
   <!-- Materialize JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <!-- You'd need to add your own JavaScript here to handle form submission, store comments, and ratings. -->
+  <script>
+    // Initialize Sidenav for mobile navigation
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
+    });
+
+    // Function to load external HTML content into placeholders
+    function loadHTML(id, url) {
+      fetch(url)
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById(id).innerHTML = html;
+        })
+        .catch(error => console.error('Error loading ' + url + ':', error));
+    }
+    // Load external content into the philosophy and about sections
+    loadHTML('philosophy-content', 'partials/philosophy.html');
+    loadHTML('author-content', 'partials/author.html');
+
+    // Fetch books data from JSON and populate the Books Section dynamically as custom cards
+    fetch('data/books.json')
+      .then(response => response.json())
+      .then(data => {
+        let booksContent = document.getElementById("books-content");
+        let html = '';
+        data.forEach(book => {
+          html += `
+            <div class="col s12">
+              <div class="custom-card">
+                <div class="image-container">
+                  <img src="${book.image}" alt="${book.title}">
+                </div>
+                <div class="card-content">
+                  ${!book.published ? '<div class="overlay">Coming Soon</div>' : ''}
+                  <h5>${book.title}</h5>
+                  <p>${book.description}</p>
+                  ${book.published 
+                    ? `<a href="${book.amazonUrl}" target="_blank" class="amazon-btn">Buy on Amazon</a>`
+                    : `<span class="amazon-btn disabled">Buy on Amazon</span>`}
+                </div>
+              </div>
+            </div>
+          `;
+        });
+        booksContent.innerHTML = html;
+      })
+      .catch(error => console.error('Error loading books JSON:', error));
+
+    // Fetch blog data from JSON and populate the Blog Section dynamically as a list of cards
+    fetch('data/blogs.json')
+      .then(response => response.json())
+      .then(data => {
+        let blogContent = document.getElementById("blog-content");
+        let html = '';
+        data.forEach(blog => {
+          html += `
+            <div class="blog-card">
+              <h5>${blog.title}</h5>
+              <h6>${blog.subtitle}</h6>
+              <p>${blog.description}</p>
+              <a href="${blog.html}" class="btn blue lighten-1">Read More</a>
+            </div>
+          `;
+        });
+        blogContent.innerHTML = html;
+      })
+      .catch(error => console.error('Error loading blogs JSON:', error));
+
+    // Fetch social links from JSON and populate the social links section dynamically
+    fetch('data/social.json')
+      .then(response => response.json())
+      .then(data => {
+        let socialLinksContainer = document.getElementById("social-links");
+        let html = '';
+        data.forEach(site => {
+          html += `<a href="${site.url}" target="_blank" class="btn-floating ${site.color}" style="display: flex; align-items: center; justify-content: center;">
+                     <img src="${site.icon}" alt="${site.name} icon" style="width:26px; height:26px; padding:2px;">
+                   </a>`;
+        });
+        socialLinksContainer.innerHTML = html;
+      })
+      .catch(error => console.error('Error loading social JSON:', error));
+
+  </script>
 </body>
 </html>
