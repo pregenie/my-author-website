@@ -17,8 +17,18 @@
       flex-direction: column;
       /* Using system default font for general text */
     }
+    /* Make the navbar fixed */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
     main {
       flex: 1 0 auto;
+      /* Add top padding to ensure content isn’t hidden behind the fixed navbar;
+         adjust 64px if your navbar height changes */
+      padding-top: 64px;
     }
     p {
       font-size: 1.1em; /* Adjust as needed, 1.1em is about 10% larger than the default */
@@ -35,7 +45,6 @@
     .hero h1 {
       font-size: 2.5em; /* Adjust this value as needed */
     }
-    
     .hero p.flow-text {
       font-size: 1.2em; /* Adjust this value as needed */
     }
