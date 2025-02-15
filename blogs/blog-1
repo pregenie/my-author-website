@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog Title Here</title>
+  <!-- Materialize CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <style>
+    .comment-section {
+      margin-top: 2rem;
+    }
+    .rating {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h3>Blog Title Here</h3>
+    <h5>Subtitle Here</h5>
+    <p>Blog content goes here…</p>
+    
+    <!-- Comments and Ratings Section -->
+    <div class="comment-section">
+      <h5>Comments</h5>
+      <!-- Existing comments could be listed here -->
+      <div id="comments">
+        <!-- Dynamically loaded or manually added comments -->
+      </div>
+      
+      <form id="comment-form">
+        <div class="input-field">
+          <input type="text" id="commenter-name" required>
+          <label for="commenter-name">Your Name</label>
+        </div>
+        <div class="input-field rating">
+          <label>Rate this blog:</label>
+          <p>
+            <label>
+              <input name="rating" type="radio" value="1" />
+              <span>1</span>
+            </label>
+            <label>
+              <input name="rating" type="radio" value="2" />
+              <span>2</span>
+            </label>
+            <label>
+              <input name="rating" type="radio" value="3" />
+              <span>3</span>
+            </label>
+            <label>
+              <input name="rating" type="radio" value="4" />
+              <span>4</span>
+            </label>
+            <label>
+              <input name="rating" type="radio" value="5" />
+              <span>5</span>
+            </label>
+          </p>
+        </div>
+        <div class="input-field">
+          <textarea id="comment-text" class="materialize-textarea" required></textarea>
+          <label for="comment-text">Your Comment</label>
+        </div>
+        <button type="submit" class="btn blue lighten-1">Submit Comment</button>
+      </form>
+    </div>
+  </main>
+  
+  <!-- Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- You'd need to add your own JavaScript here to handle form submission, store comments, and ratings. -->
+</body>
+</html>
