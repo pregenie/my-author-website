@@ -60,7 +60,7 @@
       padding-top: 4rem;
       padding-bottom: 4rem;
     }
-    /* Custom card layout for books */
+    /* Custom card layout for books and blog posts */
     .custom-card {
       display: flex;
       align-items: center;
@@ -80,7 +80,7 @@
       height: auto;
       border-radius: 4px;
     }
-    /* Overlay placed over the text area */
+    /* Overlay placed over the text area (for books) */
     .card-content {
       flex: 1;
       position: relative;
@@ -119,16 +119,7 @@
       opacity: 0.5;
       pointer-events: none;
     }
-    /* Blog card styling */
-    .blog-card {
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      padding: 16px;
-      margin-bottom: 16px;
-    }
-    .blog-card h5 {
-      margin-top: 0;
-    }
+    /* Blog card styling (using same custom-card layout) */
     /* Social links container: display icons inline with a gap */
     #social-links {
       display: flex;
@@ -309,7 +300,7 @@
       })
       .catch(error => console.error('Error loading books JSON:', error));
 
-    // Fetch blog data from JSON and populate the Blog Section dynamically as a list of cards
+    // Fetch blog data from JSON and populate the Blog Section dynamically as custom cards with horizontal layout
     fetch('data/blogs.json')
       .then(response => response.json())
       .then(data => {
@@ -317,11 +308,18 @@
         let html = '';
         data.forEach(blog => {
           html += `
-            <div class="blog-card">
-              <h5>${blog.title}</h5>
-              <h6>${blog.subtitle}</h6>
-              <p>${blog.description}</p>
-              <a href="${blog.html}" class="btn blue lighten-1">Read More</a>
+            <div class="col s12">
+              <div class="custom-card">
+                <div class="image-container">
+                  <img src="${blog.image}" alt="${blog.title}">
+                </div>
+                <div class="card-content">
+                  <h5>${blog.title}</h5>
+                  <h6>${blog.subtitle}</h6>
+                  <p>${blog.description}</p>
+                  <a href="${blog.html}" class="btn blue lighten-1">Read More</a>
+                </div>
+              </div>
             </div>
           `;
         });
