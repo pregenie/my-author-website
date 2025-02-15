@@ -4,7 +4,7 @@
     "title": "The Anatomy of Control",
     "subtitle": "How power shapes our reality",
     "description": "An exploration of the invisible mechanisms that guide society, with a nod to absurdity and earnest inquiry.",
-    "html": "blogs/blog-1.html",
+    "html": "partials/blog-1.html",
     "image": "images/blog-1.jpg"
   },
   {
@@ -12,7 +12,7 @@
     "title": "Laughing at the Abyss",
     "subtitle": "The tragic humor of modern life",
     "description": "A deep dive into how we cope with the crushing weight of truth—by finding humor in our shared struggles.",
-    "html": "blogs/blog-2.html",
+    "html": "partials/blog-2.html",
     "image": "images/blog-2.jpg"
   }
 ]
