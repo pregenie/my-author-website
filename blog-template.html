@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blog Template</title>
+  <title>Blog - Philip Regenie</title>
   <!-- Materialize CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- Google Font for overlay only -->
+  <!-- Google Font for overlay and ratings -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Make the navbar fixed */
+    /* Fixed Navbar */
     nav {
       position: fixed;
       top: 0;
@@ -26,56 +26,63 @@
       min-height: 100vh;
       flex-direction: column;
       margin: 0;
+      /* Default system fonts */
     }
     main {
       flex: 1 0 auto;
-      padding-top: 64px; /* ensure content isn't hidden behind navbar */
+      padding-top: 64px; /* space for fixed navbar */
     }
     .section {
       padding-top: 4rem;
       padding-bottom: 4rem;
     }
-    .blog-card {
-      display: flex;
-      align-items: center;
-      border: 1px solid #e0e0e0;
+    /* Blog Header styling */
+    #blog-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    #blog-header img {
+      max-width: 100%;
+      height: auto;
       border-radius: 8px;
-      margin-bottom: 16px;
-      padding: 16px;
     }
-    .blog-image {
-      flex-shrink: 0;
-      margin-right: 16px;
-      border-radius: 4px;
-      max-width: 200px;
+    #blog-header h4 {
+      margin: 0.5rem 0 0.25rem;
+      font-size: 2em;
     }
-    .blog-content {
-      flex: 1;
+    #blog-header h6 {
+      margin: 0;
+      font-weight: 300;
+      color: #666;
     }
-    /* Rate this blog */
+    /* Rating styling */
     #rate-this-blog {
       margin-top: 1rem;
-      margin-bottom: 0.5rem;
       font-weight: bold;
+    }
+    #rating-stars {
+      margin-bottom: 1rem;
     }
     #rating-stars i {
       cursor: pointer;
+      font-size: 2em;
+      color: #FF9900;
       margin-right: 4px;
     }
-    /* Footer styling */
-    footer.page-footer {
-      margin-top: auto;
+    /* Main blog content area */
+    #blog-main-content {
+      margin-top: 2rem;
     }
+    /* Navbar and Footer use same styles as index.html */
   </style>
 </head>
 <body>
   <!-- Navbar -->
   <nav class="blue lighten-1">
     <div class="nav-wrapper container">
-      <a href="#" class="brand-logo">Philip Regenie</a>
+      <a href="index.html" class="brand-logo">Philip Regenie</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <!-- Links back to sections on the main page -->
         <li><a href="index.html#books">Books</a></li>
         <li><a href="index.html#philosophy">Philosophy</a></li>
         <li><a href="index.html#about">About</a></li>
@@ -93,11 +100,17 @@
   </ul>
 
   <main class="container">
-    <div id="blog-section" class="section">
-      <div id="blog-container"></div>
+    <!-- Blog Header -->
+    <div id="blog-header" class="section">
+      <!-- Blog image, title, subtitle and rating will be injected here -->
+    </div>
+    <!-- Blog Main Content -->
+    <div id="blog-main-content" class="section">
+      <!-- Blog partial content will load here -->
     </div>
   </main>
 
+  <!-- Footer -->
   <footer class="page-footer blue lighten-1">
     <div class="container center">
       <p>&copy; 2025 Philip Regenie. All rights reserved.</p>
@@ -113,62 +126,49 @@
       M.Sidenav.init(elems);
     });
 
-    // Helper to get query parameter e.g. ?name=blog-1
+    // Helper to get query parameter
     function getQueryParam(param) {
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get(param);
     }
 
-    const blogName = getQueryParam('name'); // e.g. blog-1
-
-    // If no blog name is specified, show an error or redirect
+    const blogName = getQueryParam('name');
     if (!blogName) {
-      document.getElementById('blog-container').innerHTML = '<p>No blog specified.</p>';
+      document.getElementById('blog-header').innerHTML = '<p>No blog specified.</p>';
     } else {
-      // Fetch blogs.json
+      // Fetch blogs.json to find matching blog entry
       fetch('data/blogs.json')
         .then(response => response.json())
         .then(data => {
-          // Find the blog entry with matching "name"
           const blogEntry = data.find(blog => blog.name === blogName);
           if (!blogEntry) {
-            document.getElementById('blog-container').innerHTML = '<p>Blog not found.</p>';
+            document.getElementById('blog-header').innerHTML = '<p>Blog not found.</p>';
             return;
           }
-
-          // Build the blog card
-          let html = `
-            <div class="blog-card">
-              <img class="blog-image" src="${blogEntry.image}" alt="${blogEntry.title}">
-              <div class="blog-content">
-                <h4>${blogEntry.title}</h4>
-                <h6>${blogEntry.subtitle}</h6>
-                <p>${blogEntry.description}</p>
-                <!-- Partial for main content will go here -->
-                <div id="blog-main-content"></div>
-                <div id="rate-this-blog">Rate this blog</div>
-                <div id="rating-stars">
-                  <i class="material-icons star" data-value="1">star_border</i>
-                  <i class="material-icons star" data-value="2">star_border</i>
-                  <i class="material-icons star" data-value="3">star_border</i>
-                  <i class="material-icons star" data-value="4">star_border</i>
-                  <i class="material-icons star" data-value="5">star_border</i>
-                </div>
-              </div>
+          // Build the blog header with image, title, subtitle and rating
+          let headerHTML = `
+            <img src="${blogEntry.image}" alt="${blogEntry.title}">
+            <h4>${blogEntry.title}</h4>
+            <h6>${blogEntry.subtitle}</h6>
+            <div id="rate-this-blog">Rate this blog</div>
+            <div id="rating-stars">
+              <i class="material-icons star" data-value="1">star_border</i>
+              <i class="material-icons star" data-value="2">star_border</i>
+              <i class="material-icons star" data-value="3">star_border</i>
+              <i class="material-icons star" data-value="4">star_border</i>
+              <i class="material-icons star" data-value="5">star_border</i>
             </div>
           `;
-          document.getElementById('blog-container').innerHTML = html;
-
-          // Load the partial for the main blog content
+          document.getElementById('blog-header').innerHTML = headerHTML;
+          // Load the blog main content partial
           loadBlogPartial('blog-main-content', blogEntry.html);
-
-          // Initialize star rating event listeners
+          // Initialize star rating functionality
           initStarRating();
         })
         .catch(error => console.error('Error loading blogs JSON:', error));
     }
 
-    // Load partial for the main blog content
+    // Load blog partial content into a given container
     function loadBlogPartial(id, url) {
       fetch(url)
         .then(response => response.text())
@@ -178,21 +178,19 @@
         .catch(error => console.error('Error loading partial:', error));
     }
 
-    // Basic star rating functionality
+    // Initialize basic star rating functionality
     function initStarRating() {
       const stars = document.querySelectorAll('#rating-stars .star');
       stars.forEach(star => {
         star.addEventListener('click', () => {
           const rating = star.getAttribute('data-value');
-          // Example: highlight all stars up to the clicked one
           stars.forEach(s => {
             if (parseInt(s.getAttribute('data-value')) <= rating) {
-              s.innerText = 'star'; // filled star
+              s.innerText = 'star';
             } else {
               s.innerText = 'star_border';
             }
           });
-          // Here you could send the rating to a server or store it somewhere
           console.log(`Rated this blog: ${rating} stars`);
         });
       });
@@ -200,3 +198,4 @@
   </script>
 </body>
 </html>
+
