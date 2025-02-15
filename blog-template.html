@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog Template</title>
+  <!-- Materialize CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Google Font for overlay only -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Make the navbar fixed */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .sidenav {
+      top: 64px;
+    }
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+      margin: 0;
+    }
+    main {
+      flex: 1 0 auto;
+      padding-top: 64px; /* ensure content isn't hidden behind navbar */
+    }
+    .section {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+    .blog-card {
+      display: flex;
+      align-items: center;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      padding: 16px;
+    }
+    .blog-image {
+      flex-shrink: 0;
+      margin-right: 16px;
+      border-radius: 4px;
+      max-width: 200px;
+    }
+    .blog-content {
+      flex: 1;
+    }
+    /* Rate this blog */
+    #rate-this-blog {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    #rating-stars i {
+      cursor: pointer;
+      margin-right: 4px;
+    }
+    /* Footer styling */
+    footer.page-footer {
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="blue lighten-1">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">Philip Regenie</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <!-- Links back to sections on the main page -->
+        <li><a href="index.html#books">Books</a></li>
+        <li><a href="index.html#philosophy">Philosophy</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#blog">Blog</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="index.html#books">Books</a></li>
+    <li><a href="index.html#philosophy">Philosophy</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#blog">Blog</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+
+  <main class="container">
+    <div id="blog-section" class="section">
+      <div id="blog-container"></div>
+    </div>
+  </main>
+
+  <footer class="page-footer blue lighten-1">
+    <div class="container center">
+      <p>&copy; 2025 Philip Regenie. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    // Initialize Sidenav
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
+    });
+
+    // Helper to get query parameter e.g. ?name=blog-1
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    const blogName = getQueryParam('name'); // e.g. blog-1
+
+    // If no blog name is specified, show an error or redirect
+    if (!blogName) {
+      document.getElementById('blog-container').innerHTML = '<p>No blog specified.</p>';
+    } else {
+      // Fetch blogs.json
+      fetch('data/blogs.json')
+        .then(response => response.json())
+        .then(data => {
+          // Find the blog entry with matching "name"
+          const blogEntry = data.find(blog => blog.name === blogName);
+          if (!blogEntry) {
+            document.getElementById('blog-container').innerHTML = '<p>Blog not found.</p>';
+            return;
+          }
+
+          // Build the blog card
+          let html = `
+            <div class="blog-card">
+              <img class="blog-image" src="${blogEntry.image}" alt="${blogEntry.title}">
+              <div class="blog-content">
+                <h4>${blogEntry.title}</h4>
+                <h6>${blogEntry.subtitle}</h6>
+                <p>${blogEntry.description}</p>
+                <!-- Partial for main content will go here -->
+                <div id="blog-main-content"></div>
+                <div id="rate-this-blog">Rate this blog</div>
+                <div id="rating-stars">
+                  <i class="material-icons star" data-value="1">star_border</i>
+                  <i class="material-icons star" data-value="2">star_border</i>
+                  <i class="material-icons star" data-value="3">star_border</i>
+                  <i class="material-icons star" data-value="4">star_border</i>
+                  <i class="material-icons star" data-value="5">star_border</i>
+                </div>
+              </div>
+            </div>
+          `;
+          document.getElementById('blog-container').innerHTML = html;
+
+          // Load the partial for the main blog content
+          loadBlogPartial('blog-main-content', blogEntry.html);
+
+          // Initialize star rating event listeners
+          initStarRating();
+        })
+        .catch(error => console.error('Error loading blogs JSON:', error));
+    }
+
+    // Load partial for the main blog content
+    function loadBlogPartial(id, url) {
+      fetch(url)
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById(id).innerHTML = html;
+        })
+        .catch(error => console.error('Error loading partial:', error));
+    }
+
+    // Basic star rating functionality
+    function initStarRating() {
+      const stars = document.querySelectorAll('#rating-stars .star');
+      stars.forEach(star => {
+        star.addEventListener('click', () => {
+          const rating = star.getAttribute('data-value');
+          // Example: highlight all stars up to the clicked one
+          stars.forEach(s => {
+            if (parseInt(s.getAttribute('data-value')) <= rating) {
+              s.innerText = 'star'; // filled star
+            } else {
+              s.innerText = 'star_border';
+            }
+          });
+          // Here you could send the rating to a server or store it somewhere
+          console.log(`Rated this blog: ${rating} stars`);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
