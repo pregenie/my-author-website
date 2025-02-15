@@ -12,12 +12,6 @@
     "color": "light-blue darken-3"
   },
   {
-    "name": "Instagram",
-    "icon": "images/instagram.svg",
-    "url": "https://instagram.com/yourprofile",
-    "color": "deep-orange"
-  },
-  {
     "name": "Goodreads",
     "icon": "images/goodreads.svg",
     "url": "https://goodreads.com/yourprofile",
