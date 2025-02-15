@@ -1,0 +1,10 @@
+{
+  "title": "My Books by Philip Regenie",
+  "author": "Philip Regenie",
+  "introduction": "Welcome to my world of books and ideas—a place where the stark, unyielding truths of power and human nature are examined with grave seriousness, yet where the absurdity of our reality offers a subtle, unexpected humor.",
+  "colorPalette": {
+    "navbar": "#2196F3",
+    "footer": "#2196F3",
+    "heroBackground": "linear-gradient(135deg, #667eea, #764ba2)"
+  }
+}

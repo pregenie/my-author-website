@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Books by Philip Regenie</title>
+  <!-- The title will be updated from site.json -->
+  <title>Loading site...</title>
   <!-- Materialize CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
   <!-- Material Icons -->
@@ -160,208 +161,243 @@
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="blue lighten-1">
-    <div class="nav-wrapper container">
-      <a href="#" class="brand-logo">Philip Regenie</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="index.html#books">Books</a></li>
-        <li><a href="index.html#philosophy">Philosophy</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#blog">Blog</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-  <ul class="sidenav" id="mobile-demo">
-    <li><a href="index.html#books">Books</a></li>
-    <li><a href="index.html#philosophy">Philosophy</a></li>
-    <li><a href="index.html#about">About</a></li>
-    <li><a href="index.html#blog">Blog</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
-  </ul>
+<!-- Navbar -->
+<nav class="blue lighten-1">
+  <div class="nav-wrapper container">
+    <!-- The brand text will be replaced with the author name from site.json -->
+    <a href="#" class="brand-logo" id="site-author"></a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="index.html#books">Books</a></li>
+      <li><a href="index.html#philosophy">Philosophy</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#blog">Blog</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="index.html#books">Books</a></li>
+  <li><a href="index.html#philosophy">Philosophy</a></li>
+  <li><a href="index.html#about">About</a></li>
+  <li><a href="index.html#blog">Blog</a></li>
+  <li><a href="index.html#contact">Contact</a></li>
+</ul>
 
-  <main>
-    <!-- Hero Section -->
-    <div class="hero">
-      <div class="container">
-        <img src="images/author.jpg" alt="Philip Regenie" class="circle responsive-img author-img">
-        <h1 class="white-text">Philip Regenie</h1>
-        <p class="white-text flow-text">Welcome to my world of books and ideas—a place where the stark, unyielding truths of power and human nature are examined with grave seriousness, yet where the absurdity of our reality offers a subtle, unexpected humor. In these pages, you'll confront the cold precision of those who manipulate history and society, and you'll also glimpse the tragic comedy that underpins our shared existence. I invite you to join me on this journey, where earnest inquiry and a quiet, knowing smile coexist in the face of our world’s most unsettling truths.</p>
+<main>
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="container">
+      <!-- The alt text is updated to use the author’s name -->
+      <img src="images/author.jpg" alt="" id="author-image" class="circle responsive-img author-img">
+      <!-- The header text will be updated with the author name -->
+      <h1 class="white-text" id="site-author-header"></h1>
+      <!-- The introduction text is loaded from site.json -->
+      <p class="white-text flow-text" id="site-introduction"></p>
+    </div>
+  </div>
+
+  <!-- Books Section -->
+  <div id="books" class="section">
+    <div class="container">
+      <h2 class="center">Books</h2>
+      <div id="books-content">
+        <!-- Book cards will be injected here dynamically from JSON -->
       </div>
     </div>
+  </div>
 
-    <!-- Books Section -->
-    <div id="books" class="section">
-      <div class="container">
-        <h2 class="center">Books</h2>
-        <div id="books-content">
-          <!-- Book cards will be injected here dynamically from JSON -->
+  <!-- Philosophy Section -->
+  <div id="philosophy" class="section grey lighten-4">
+    <div class="container">
+      <h2 class="center">My Philosophy</h2>
+      <!-- External philosophy content loaded here -->
+      <div id="philosophy-content"></div>
+    </div>
+  </div>
+
+  <!-- About the Author Section -->
+  <div id="about" class="section">
+    <div class="container">
+      <h2 class="center">About the Author</h2>
+      <!-- External author content loaded here -->
+      <div id="author-content"></div>
+    </div>
+  </div>
+
+  <!-- Blog Section -->
+  <div id="blog" class="section">
+    <div class="container">
+      <h2 class="center">Blog</h2>
+      <div id="blog-content">
+        <!-- Blog cards will be injected here dynamically from JSON -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div id="contact" class="section grey lighten-4">
+    <div class="container">
+      <h2 class="center">Contact & Comments</h2>
+      <div class="row">
+        <div class="col s12 m6">
+          <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+            <div class="input-field">
+              <input id="name" type="text" name="name" required>
+              <label for="name">Name</label>
+            </div>
+            <div class="input-field">
+              <input id="email" type="email" name="email" required>
+              <label for="email">Email</label>
+            </div>
+            <div class="input-field">
+              <textarea id="comment" name="comment" class="materialize-textarea" required></textarea>
+              <label for="comment">Comment</label>
+            </div>
+            <button type="submit" class="btn blue lighten-1">Send</button>
+          </form>
+        </div>
+        <div class="col s12 m6 center-align">
+          <h5>Follow Me</h5>
+          <!-- Social links will be injected here dynamically -->
+          <div id="social-links"></div>
         </div>
       </div>
     </div>
+  </div>
+</main>
 
-    <!-- Philosophy Section -->
-    <div id="philosophy" class="section grey lighten-4">
-      <div class="container">
-        <h2 class="center">My Philosophy</h2>
-        <!-- External philosophy content loaded here -->
-        <div id="philosophy-content"></div>
-      </div>
-    </div>
+<!-- Footer -->
+<footer class="page-footer blue lighten-1">
+  <div class="container center">
+    <p>&copy; 2025 <span id="site-author-footer"></span>. All rights reserved.</p>
+  </div>
+</footer>
 
-    <!-- About the Author Section -->
-    <div id="about" class="section">
-      <div class="container">
-        <h2 class="center">About the Author</h2>
-        <!-- External author content loaded here -->
-        <div id="author-content"></div>
-      </div>
-    </div>
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+  // Fetch site configuration from data/site.json and update static elements
+  fetch('data/site.json')
+    .then(response => response.json())
+    .then(siteData => {
+      // Update document title
+      document.title = siteData.title;
+      // Update navbar brand logo with the author’s name
+      document.getElementById("site-author").textContent = siteData.author;
+      // Update hero section: header and introduction
+      document.getElementById("site-author-header").textContent = siteData.author;
+      document.getElementById("site-introduction").textContent = siteData.introduction;
+      // Update the alt attribute of the author image
+      document.getElementById("author-image").setAttribute("alt", siteData.author);
+      // Update footer with the author’s name
+      document.getElementById("site-author-footer").textContent = siteData.author;
+      // Update color palette if provided in site.json
+      if (siteData.colorPalette) {
+        if (siteData.colorPalette.navbar) {
+          document.querySelector("nav").style.backgroundColor = siteData.colorPalette.navbar;
+        }
+        if (siteData.colorPalette.footer) {
+          document.querySelector("footer").style.backgroundColor = siteData.colorPalette.footer;
+        }
+        if (siteData.colorPalette.heroBackground) {
+          document.querySelector(".hero").style.background = siteData.colorPalette.heroBackground;
+        }
+      }
+    })
+    .catch(error => console.error("Error loading data/site.json:", error));
 
-    <!-- Blog Section -->
-    <div id="blog" class="section">
-      <div class="container">
-        <h2 class="center">Blog</h2>
-        <div id="blog-content">
-          <!-- Blog cards will be injected here dynamically from JSON -->
-        </div>
-      </div>
-    </div>
+  // Initialize Sidenav for mobile navigation
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    M.Sidenav.init(elems);
+  });
 
-    <!-- Contact Section -->
-    <div id="contact" class="section grey lighten-4">
-      <div class="container">
-        <h2 class="center">Contact & Comments</h2>
-        <div class="row">
-          <div class="col s12 m6">
-            <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
-              <div class="input-field">
-                <input id="name" type="text" name="name" required>
-                <label for="name">Name</label>
+  // Function to load external HTML content into placeholders
+  function loadHTML(id, url) {
+    fetch(url)
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById(id).innerHTML = html;
+      })
+      .catch(error => console.error('Error loading ' + url + ':', error));
+  }
+  // Load external content into the philosophy and about sections
+  loadHTML('philosophy-content', 'partials/philosophy.html');
+  loadHTML('author-content', 'partials/author.html');
+
+  // Fetch books data from JSON and populate the Books Section dynamically as custom cards
+  fetch('data/books.json')
+    .then(response => response.json())
+    .then(data => {
+      let booksContent = document.getElementById("books-content");
+      let html = '';
+      data.forEach(book => {
+        html += `
+          <div class="col s12">
+            <div class="custom-card">
+              <div class="image-container">
+                <img src="${book.image}" alt="${book.title}">
               </div>
-              <div class="input-field">
-                <input id="email" type="email" name="email" required>
-                <label for="email">Email</label>
-              </div>
-              <div class="input-field">
-                <textarea id="comment" name="comment" class="materialize-textarea" required></textarea>
-                <label for="comment">Comment</label>
-              </div>
-              <button type="submit" class="btn blue lighten-1">Send</button>
-            </form>
-          </div>
-          <div class="col s12 m6 center-align">
-            <h5>Follow Me</h5>
-            <!-- Social links will be injected here dynamically -->
-            <div id="social-links"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="page-footer blue lighten-1">
-    <div class="container center">
-      <p>&copy; 2025 Philip Regenie. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <!-- Materialize JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script>
-    // Initialize Sidenav for mobile navigation
-    document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.sidenav');
-      M.Sidenav.init(elems);
-    });
-
-    // Function to load external HTML content into placeholders
-    function loadHTML(id, url) {
-      fetch(url)
-        .then(response => response.text())
-        .then(html => {
-          document.getElementById(id).innerHTML = html;
-        })
-        .catch(error => console.error('Error loading ' + url + ':', error));
-    }
-    // Load external content into the philosophy and about sections
-    loadHTML('philosophy-content', 'partials/philosophy.html');
-    loadHTML('author-content', 'partials/author.html');
-
-    // Fetch books data from JSON and populate the Books Section dynamically as custom cards
-    fetch('data/books.json')
-      .then(response => response.json())
-      .then(data => {
-        let booksContent = document.getElementById("books-content");
-        let html = '';
-        data.forEach(book => {
-          html += `
-            <div class="col s12">
-              <div class="custom-card">
-                <div class="image-container">
-                  <img src="${book.image}" alt="${book.title}">
-                </div>
-                <div class="card-content">
-                  ${!book.published ? '<div class="overlay">Coming Soon</div>' : ''}
-                  <h5>${book.title}</h5>
-                  <p>${book.description}</p>
-                  ${book.published 
-                    ? `<a href="${book.amazonUrl}" target="_blank" class="amazon-btn">Buy on Amazon</a>`
-                    : `<span class="amazon-btn disabled">Buy on Amazon</span>`}
-                </div>
+              <div class="card-content">
+                ${!book.published ? '<div class="overlay">Coming Soon</div>' : ''}
+                <h5>${book.title}</h5>
+                <p>${book.description}</p>
+                ${book.published
+                  ? `<a href="${book.amazonUrl}" target="_blank" class="amazon-btn">Buy on Amazon</a>`
+                  : `<span class="amazon-btn disabled">Buy on Amazon</span>`}
               </div>
             </div>
-          `;
-        });
-        booksContent.innerHTML = html;
-      })
-      .catch(error => console.error('Error loading books JSON:', error));
+          </div>
+        `;
+      });
+      booksContent.innerHTML = html;
+    })
+    .catch(error => console.error('Error loading books JSON:', error));
 
-    // Fetch blog data from JSON and populate the Blog Section dynamically as custom cards with horizontal layout
-    fetch('data/blogs.json')
-      .then(response => response.json())
-      .then(data => {
-        let blogContent = document.getElementById("blog-content");
-        let html = '';
-        data.forEach(blog => {
-          html += `
-            <div class="col s12">
-              <div class="blog-card custom-card">
-                <div class="blog-image image-container">
-                  <img src="${blog.image}" alt="${blog.title}">
-                </div>
-                <div class="blog-content card-content">
-                  <h5>${blog.title}</h5>
-                  <h6>${blog.subtitle}</h6>
-                  <p>${blog.description}</p>
-                  <a href="blog-template.html?name=${blog.name}" class="btn blue lighten-1">Read More</a>
-                </div>
+  // Fetch blog data from JSON and populate the Blog Section dynamically as custom cards with horizontal layout
+  fetch('data/blogs.json')
+    .then(response => response.json())
+    .then(data => {
+      let blogContent = document.getElementById("blog-content");
+      let html = '';
+      data.forEach(blog => {
+        html += `
+          <div class="col s12">
+            <div class="blog-card custom-card">
+              <div class="blog-image image-container">
+                <img src="${blog.image}" alt="${blog.title}">
+              </div>
+              <div class="blog-content card-content">
+                <h5>${blog.title}</h5>
+                <h6>${blog.subtitle}</h6>
+                <p>${blog.description}</p>
+                <a href="blog-template.html?name=${blog.name}" class="btn blue lighten-1">Read More</a>
               </div>
             </div>
-          `;
-        });
-        blogContent.innerHTML = html;
-      })
-      .catch(error => console.error('Error loading blogs JSON:', error));
+          </div>
+        `;
+      });
+      blogContent.innerHTML = html;
+    })
+    .catch(error => console.error('Error loading blogs JSON:', error));
 
-    // Fetch social links from JSON and populate the social links section dynamically
-    fetch('data/social.json')
-      .then(response => response.json())
-      .then(data => {
-        let socialLinksContainer = document.getElementById("social-links");
-        let html = '';
-        data.forEach(site => {
-          html += `<a href="${site.url}" target="_blank" class="btn-floating ${site.color}" style="display: flex; align-items: center; justify-content: center;">
-                     <img src="${site.icon}" alt="${site.name} icon" style="width:26px; height:26px; padding:2px;">
-                   </a>`;
-        });
-        socialLinksContainer.innerHTML = html;
-      })
-      .catch(error => console.error('Error loading social JSON:', error));
-  </script>
+  // Fetch social links from JSON and populate the social links section dynamically
+  fetch('data/social.json')
+    .then(response => response.json())
+    .then(data => {
+      let socialLinksContainer = document.getElementById("social-links");
+      let html = '';
+      data.forEach(site => {
+        html += `
+          <a href="${site.url}" target="_blank" class="btn-floating ${site.color}" style="display: flex; align-items: center; justify-content: center;">
+            <img src="${site.icon}" alt="${site.name} icon" style="width:26px; height:26px; padding:2px;">
+          </a>
+        `;
+      });
+      socialLinksContainer.innerHTML = html;
+    })
+    .catch(error => console.error('Error loading social JSON:', error));
+</script>
 </body>
 </html>
-

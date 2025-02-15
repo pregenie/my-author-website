@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blog - Philip Regenie</title>
+  <!-- The title will be updated from site.json -->
+  <title>Blog - Loading...</title>
   <!-- Materialize CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
   <!-- Material Icons -->
@@ -75,128 +76,151 @@
     #blog-main-content {
       margin-top: 2rem;
     }
-    /* Navbar and Footer use same styles as index.html */
+    /* Navbar and Footer use dynamic values from site.json */
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="blue lighten-1">
-    <div class="nav-wrapper container">
-      <a href="index.html" class="brand-logo">Philip Regenie</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="index.html#books">Books</a></li>
-        <li><a href="index.html#philosophy">Philosophy</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#blog">Blog</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-  <ul class="sidenav" id="mobile-demo">
-    <li><a href="index.html#books">Books</a></li>
-    <li><a href="index.html#philosophy">Philosophy</a></li>
-    <li><a href="index.html#about">About</a></li>
-    <li><a href="index.html#blog">Blog</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
-  </ul>
+<!-- Navbar -->
+<nav class="blue lighten-1">
+  <div class="nav-wrapper container">
+    <!-- The brand text is updated from site.json -->
+    <a href="index.html" class="brand-logo" id="site-author"></a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="index.html#books">Books</a></li>
+      <li><a href="index.html#philosophy">Philosophy</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#blog">Blog</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="index.html#books">Books</a></li>
+  <li><a href="index.html#philosophy">Philosophy</a></li>
+  <li><a href="index.html#about">About</a></li>
+  <li><a href="index.html#blog">Blog</a></li>
+  <li><a href="index.html#contact">Contact</a></li>
+</ul>
 
-  <main class="container">
-    <!-- Blog Header -->
-    <div id="blog-header" class="section">
-      <!-- Blog image, title, subtitle and rating will be injected here -->
-    </div>
-    <!-- Blog Main Content -->
-    <div id="blog-main-content" class="section">
-      <!-- Blog partial content will load here -->
-    </div>
-  </main>
+<main class="container">
+  <!-- Blog Header -->
+  <div id="blog-header" class="section">
+    <!-- Blog image, title, subtitle and rating will be injected here -->
+  </div>
+  <!-- Blog Main Content -->
+  <div id="blog-main-content" class="section">
+    <!-- Blog partial content will load here -->
+  </div>
+</main>
 
-  <!-- Footer -->
-  <footer class="page-footer blue lighten-1">
-    <div class="container center">
-      <p>&copy; 2025 Philip Regenie. All rights reserved.</p>
-    </div>
-  </footer>
+<!-- Footer -->
+<footer class="page-footer blue lighten-1">
+  <div class="container center">
+    <p>&copy; 2025 <span id="site-author-footer"></span>. All rights reserved.</p>
+  </div>
+</footer>
 
-  <!-- Materialize JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script>
-    // Initialize Sidenav
-    document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.sidenav');
-      M.Sidenav.init(elems);
-    });
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+  // Fetch site configuration from data/site.json and update static elements
+  fetch('data/site.json')
+    .then(response => response.json())
+    .then(siteData => {
+      // Update document title with the site author
+      document.title = `Blog - ${siteData.author}`;
+      // Update navbar brand text
+      document.getElementById("site-author").textContent = siteData.author;
+      // Update footer author name
+      document.getElementById("site-author-footer").textContent = siteData.author;
+      // Optionally update color palette if provided
+      if (siteData.colorPalette) {
+        if (siteData.colorPalette.navbar) {
+          document.querySelector("nav").style.backgroundColor = siteData.colorPalette.navbar;
+        }
+        if (siteData.colorPalette.footer) {
+          document.querySelector("footer").style.backgroundColor = siteData.colorPalette.footer;
+        }
+      }
+    })
+    .catch(error => console.error("Error loading data/site.json:", error));
 
-    // Helper to get query parameter
-    function getQueryParam(param) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
-    }
+  // Initialize Sidenav
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    M.Sidenav.init(elems);
+  });
 
-    const blogName = getQueryParam('name');
-    if (!blogName) {
-      document.getElementById('blog-header').innerHTML = '<p>No blog specified.</p>';
-    } else {
-      // Fetch blogs.json to find matching blog entry
-      fetch('data/blogs.json')
-        .then(response => response.json())
-        .then(data => {
-          const blogEntry = data.find(blog => blog.name === blogName);
-          if (!blogEntry) {
-            document.getElementById('blog-header').innerHTML = '<p>Blog not found.</p>';
-            return;
+  // Helper to get query parameter
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  const blogName = getQueryParam('name');
+  if (!blogName) {
+    document.getElementById('blog-header').innerHTML = '<p>No blog specified.</p>';
+  } else {
+    // Fetch blogs.json to find matching blog entry
+    fetch('data/blogs.json')
+      .then(response => response.json())
+      .then(data => {
+        const blogEntry = data.find(blog => blog.name === blogName);
+        if (!blogEntry) {
+          document.getElementById('blog-header').innerHTML = '<p>Blog not found.</p>';
+          return;
+        }
+        // Build the blog header with image, title, subtitle and rating
+        let headerHTML = `
+          <img src="${blogEntry.image}" alt="${blogEntry.title}">
+          <h4>${blogEntry.title}</h4>
+          <h6>${blogEntry.subtitle}</h6>
+          <div id="rate-this-blog">Rate this blog</div>
+          <div id="rating-stars">
+            <i class="material-icons star" data-value="1">star_border</i>
+            <i class="material-icons star" data-value="2">star_border</i>
+            <i class="material-icons star" data-value="3">star_border</i>
+            <i class="material-icons star" data-value="4">star_border</i>
+            <i class="material-icons star" data-value="5">star_border</i>
+          </div>
+        `;
+        document.getElementById('blog-header').innerHTML = headerHTML;
+        // Load the blog main content partial
+        loadBlogPartial('blog-main-content', blogEntry.html);
+        // Initialize star rating functionality
+        initStarRating();
+      })
+      .catch(error => console.error('Error loading blogs JSON:', error));
+  }
+
+  // Load blog partial content into a given container
+  function loadBlogPartial(id, url) {
+    fetch(url)
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById(id).innerHTML = html;
+      })
+      .catch(error => console.error('Error loading partial:', error));
+  }
+
+  // Initialize basic star rating functionality
+  function initStarRating() {
+    const stars = document.querySelectorAll('#rating-stars .star');
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        const rating = star.getAttribute('data-value');
+        stars.forEach(s => {
+          if (parseInt(s.getAttribute('data-value')) <= rating) {
+            s.innerText = 'star';
+          } else {
+            s.innerText = 'star_border';
           }
-          // Build the blog header with image, title, subtitle and rating
-          let headerHTML = `
-            <img src="${blogEntry.image}" alt="${blogEntry.title}">
-            <h4>${blogEntry.title}</h4>
-            <h6>${blogEntry.subtitle}</h6>
-            <div id="rate-this-blog">Rate this blog</div>
-            <div id="rating-stars">
-              <i class="material-icons star" data-value="1">star_border</i>
-              <i class="material-icons star" data-value="2">star_border</i>
-              <i class="material-icons star" data-value="3">star_border</i>
-              <i class="material-icons star" data-value="4">star_border</i>
-              <i class="material-icons star" data-value="5">star_border</i>
-            </div>
-          `;
-          document.getElementById('blog-header').innerHTML = headerHTML;
-          // Load the blog main content partial
-          loadBlogPartial('blog-main-content', blogEntry.html);
-          // Initialize star rating functionality
-          initStarRating();
-        })
-        .catch(error => console.error('Error loading blogs JSON:', error));
-    }
-
-    // Load blog partial content into a given container
-    function loadBlogPartial(id, url) {
-      fetch(url)
-        .then(response => response.text())
-        .then(html => {
-          document.getElementById(id).innerHTML = html;
-        })
-        .catch(error => console.error('Error loading partial:', error));
-    }
-
-    // Initialize basic star rating functionality
-    function initStarRating() {
-      const stars = document.querySelectorAll('#rating-stars .star');
-      stars.forEach(star => {
-        star.addEventListener('click', () => {
-          const rating = star.getAttribute('data-value');
-          stars.forEach(s => {
-            if (parseInt(s.getAttribute('data-value')) <= rating) {
-              s.innerText = 'star';
-            } else {
-              s.innerText = 'star_border';
-            }
-          });
-          console.log(`Rated this blog: ${rating} stars`);
         });
+        console.log(`Rated this blog: ${rating} stars`);
       });
-    }
-  </script>
+    });
+  }
+</script>
 </body>
 </html>
