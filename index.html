@@ -308,24 +308,18 @@
         let html = '';
         data.forEach(blog => {
           html += `
-            <div class="col s12">
-              <div class="custom-card">
-                <div class="image-container">
-                  <img src="${blog.image}" alt="${blog.title}">
-                </div>
-                <div class="card-content">
-                  <h5>${blog.title}</h5>
-                  <h6>${blog.subtitle}</h6>
-                  <p>${blog.description}</p>
-                  <a href="${blog.html}" class="btn blue lighten-1">Read More</a>
-                </div>
-              </div>
+            <div class="blog-card">
+              <h5>${blog.title}</h5>
+              <h6>${blog.subtitle}</h6>
+              <p>${blog.description}</p>
+              <a href="blog-template.html?name=${blog.name}" class="btn blue lighten-1">Read More</a>
             </div>
           `;
         });
         blogContent.innerHTML = html;
       })
       .catch(error => console.error('Error loading blogs JSON:', error));
+
 
     // Fetch social links from JSON and populate the social links section dynamically
     fetch('data/social.json')
