@@ -3,3 +3,4 @@ Flask-SQLAlchemy
 Flask-Migrate
 Flask-Bcrypt
 psycopg2-binary
+pytest

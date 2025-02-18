@@ -2,21 +2,29 @@ version: '3.8'
 services:
   web:
     build: .
+    container_name: my_author_website
     ports:
       - "5000:5000"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: my_author_website_db
+      # Note: use the service name 'db' in the connection string
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/my_author_website_db
     depends_on:
       - db
-    environment:
-      # The DATABASE_URL will be used by your Flask app.
-      - DATABASE_URL=postgresql://postgres:postgres@db/my_author_website_db
   db:
     image: postgres:14
+    container_name: my_author_db
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: my_author_website_db
+    ports:
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
 volumes:
   postgres_data:

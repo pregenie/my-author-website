@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <!-- The title will be updated from site.json -->
-  <title>Loading site...</title>
+  <title>Multi-Author Platform</title>
   <!-- Materialize CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
   <!-- Material Icons -->
@@ -16,9 +15,8 @@
       display: flex;
       min-height: 100vh;
       flex-direction: column;
-      /* Using system default font for general text */
     }
-    /* Make the navbar fixed */
+    /* Fixed Navbar */
     nav {
       position: fixed;
       top: 0;
@@ -30,428 +28,324 @@
     }
     main {
       flex: 1 0 auto;
-      /* Add top padding so content isn’t hidden behind the fixed navbar */
       padding-top: 64px;
-    }
-    p {
-      font-size: 1.1em;
     }
     /* Hero Section */
     .hero {
       background: linear-gradient(135deg, #667eea, #764ba2);
       color: #fff;
       padding: 80px 0;
-    }
-    .hero .container {
       text-align: center;
     }
     .hero h1 {
       font-size: 2.5em;
     }
-    .hero p.flow-text {
+    .hero p {
       font-size: 1.2em;
     }
-    /* Author image styling */
-    .author-img {
-      max-width: 50vw;
-      height: auto;
+    /* Simple styling for dashboard content */
+    .dashboard {
+      padding: 2rem;
     }
-    .section {
-      padding-top: 4rem;
-      padding-bottom: 4rem;
-    }
-    /* Custom card layout for books and blog posts */
-    .custom-card {
-      display: flex;
-      align-items: center;
-      padding: 16px;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      margin-bottom: 16px;
-    }
-    .image-container {
-      flex-shrink: 0;
-      margin-right: 16px;
-      position: relative;
-    }
-    .image-container img {
-      max-width: 120px;
-      width: 100%;
-      height: auto;
-      border-radius: 4px;
-    }
-    /* Overlay for books */
-    .card-content {
-      flex: 1;
-      position: relative;
-    }
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: transparent;
-      color: rgba(128, 128, 128, 0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4em;
-      font-family: 'Playfair Display', serif;
-      text-transform: capitalize;
-      font-weight: bold;
-      pointer-events: none;
-      transform: rotate(-5deg);
-      border-radius: 4px;
-    }
-    .amazon-btn {
-      background-color: #FF9900;
-      color: #fff !important;
-      border-radius: 50px;
-      padding: 10px 20px;
-      text-transform: uppercase;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 8px;
-    }
-    .amazon-btn.disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-    /* Blog card styling (horizontal layout similar to custom-card) */
-    .blog-card {
-      display: flex;
-      align-items: center;
-      padding: 16px;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      margin-bottom: 16px;
-    }
-    .blog-card .blog-image {
-      flex-shrink: 0;
-      margin-right: 16px;
-    }
-    .blog-card .blog-image img {
-      max-width: 120px;
-      width: 100%;
-      height: auto;
-      border-radius: 4px;
-    }
-    .blog-card .blog-content {
-      flex: 1;
-    }
-    /* Social links container */
+    .custom-card { /* Placeholder for card styling */ }
+    .amazon-btn { /* Placeholder for button styling */ }
     #social-links {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 8px;
     }
-    @media screen and (max-width: 600px) {
-      .custom-card, .blog-card {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .image-container, .blog-card .blog-image {
-        margin-right: 0;
-        margin-bottom: 16px;
-      }
-    }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
+  <!-- Navbar with Dropdown -->
   <nav class="blue lighten-1">
     <div class="nav-wrapper container">
-      <!-- Brand logo text will be updated from site.json -->
-      <a href="#" class="brand-logo" id="site-author"></a>
+      <!-- Brand: For a multi-author system, you might display a generic title -->
+      <a href="#" class="brand-logo" id="site-brand">Multi-Author Platform</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="index.html#books">Books</a></li>
-        <li><a href="index.html#philosophy">Philosophy</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#blog">Blog</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-        <!-- Login Icon -->
-        <li><a class="modal-trigger" href="#loginModal"><i class="material-icons">account_circle</i></a></li>
+        <li><a href="#landing">Home</a></li>
+        <!-- Dropdown Trigger for Author options -->
+        <li>
+          <a class="dropdown-trigger" href="#!" data-target="authorDropdown">
+            <i class="material-icons">account_circle</i>
+          </a>
+        </li>
       </ul>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+        <i class="material-icons">menu</i>
+      </a>
     </div>
   </nav>
-  <!-- Sidenav for mobile -->
-  <ul class="sidenav" id="mobile-demo">
-    <li><a href="index.html#books">Books</a></li>
-    <li><a href="index.html#philosophy">Philosophy</a></li>
-    <li><a href="index.html#about">About</a></li>
-    <li><a href="index.html#blog">Blog</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
-    <!-- Mobile Login Link -->
-    <li><a class="modal-trigger" href="#loginModal">Login</a></li>
+
+  <!-- Dropdown Structure -->
+  <ul id="authorDropdown" class="dropdown-content">
+    <!-- Initially, only "Author Login" is shown -->
+    <li><a href="#authModal" class="modal-trigger" id="loginDropdownItem">Author Login</a></li>
   </ul>
 
-  <!-- Login Modal -->
-  <div id="loginModal" class="modal">
+  <!-- Sidenav for Mobile -->
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="#landing">Home</a></li>
+    <li><a href="#authModal" class="modal-trigger" id="mobileLoginItem">Author Login</a></li>
+  </ul>
+
+  <!-- Landing Page (shown when not logged in) -->
+  <section id="landing" class="hero">
+    <div class="container">
+      <h1>Welcome to Multi-Author Platform</h1>
+      <p>This system enables authors to create, manage, and showcase their own blog posts, books, and social links—all in one place. Please login or register to access your personalized dashboard.</p>
+    </div>
+  </section>
+
+  <!-- Dashboard (hidden by default, shown after login) -->
+  <section id="dashboard" class="dashboard" style="display:none;">
+    <div class="container">
+      <h2 id="dashboard-title">Your Dashboard</h2>
+      <div id="dashboard-content">
+        <!-- Dynamic content loaded from /api/author/<slug> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Authentication Modal (Login, Register, Forgot Password) -->
+  <div id="authModal" class="modal">
     <div class="modal-content">
-      <h4>Author Login</h4>
-      <!-- Local Login Form -->
-      <form id="localLoginForm">
-        <div class="input-field">
-          <input id="loginUsername" type="text" class="validate">
-          <label for="loginUsername">Username</label>
+      <h4>Author Authentication</h4>
+      <!-- Tabs for switching between forms -->
+      <div class="row">
+        <div class="col s12">
+          <ul class="tabs">
+            <li class="tab col s4"><a href="#loginTab" class="active">Login</a></li>
+            <li class="tab col s4"><a href="#registerTab">Register</a></li>
+            <li class="tab col s4"><a href="#forgotTab">Forgot Password</a></li>
+          </ul>
         </div>
-        <div class="input-field">
-          <input id="loginPassword" type="password" class="validate">
-          <label for="loginPassword">Password</label>
+        <!-- Login Form -->
+        <div id="loginTab" class="col s12">
+          <form id="localLoginForm">
+            <div class="input-field">
+              <input id="loginUsername" type="text" class="validate">
+              <label for="loginUsername">Username</label>
+            </div>
+            <div class="input-field">
+              <input id="loginPassword" type="password" class="validate">
+              <label for="loginPassword">Password</label>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit">
+              Login <i class="material-icons right">send</i>
+            </button>
+            <!-- OAuth Login Button; shown only if using a database -->
+            <div id="oauthContainer" style="margin-top:20px; display:none;">
+              <a id="oauthLogin" class="btn blue darken-2">
+                <i class="material-icons left">account_circle</i>Login with Google
+              </a>
+            </div>
+          </form>
         </div>
-        <button class="btn waves-effect waves-light" type="submit">
-          Login <i class="material-icons right">send</i>
-        </button>
-      </form>
-      <div class="divider" style="margin:20px 0;"></div>
-      <!-- OAuth Login Option -->
-      <a id="oauthLogin" class="btn blue darken-2">
-        <i class="material-icons left">account_circle</i>Login with Google
-      </a>
+        <!-- Registration Form -->
+        <div id="registerTab" class="col s12">
+          <form id="registerForm">
+            <div class="input-field">
+              <input id="regUsername" type="text" class="validate">
+              <label for="regUsername">Username</label>
+            </div>
+            <div class="input-field">
+              <input id="regEmail" type="email" class="validate">
+              <label for="regEmail">Email</label>
+            </div>
+            <div class="input-field">
+              <input id="regPassword" type="password" class="validate">
+              <label for="regPassword">Password</label>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit">
+              Register <i class="material-icons right">person_add</i>
+            </button>
+          </form>
+        </div>
+        <!-- Forgot Password Form -->
+        <div id="forgotTab" class="col s12">
+          <form id="forgotForm">
+            <div class="input-field">
+              <input id="forgotEmail" type="email" class="validate">
+              <label for="forgotEmail">Email</label>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit">
+              Reset Password <i class="material-icons right">lock_open</i>
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-close btn-flat">Close</a>
     </div>
   </div>
 
+  <!-- Properties Modal (Update Author Information) -->
+  <div id="propertiesModal" class="modal">
+    <div class="modal-content">
+      <h4>Author Properties</h4>
+      <form id="propertiesForm">
+        <div class="input-field">
+          <input id="propName" type="text" class="validate">
+          <label for="propName">Name</label>
+        </div>
+        <div class="input-field">
+          <input id="propEmail" type="email" class="validate">
+          <label for="propEmail">Email</label>
+        </div>
+        <div class="input-field">
+          <input id="propUsername" type="text" class="validate">
+          <label for="propUsername">Username</label>
+        </div>
+        <div class="input-field">
+          <input id="propPassword" type="password" class="validate">
+          <label for="propPassword">New Password</label>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit">
+          Save Properties <i class="material-icons right">save</i>
+        </button>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close btn-flat">Close</a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
   <main>
-    <!-- Hero Section -->
-    <div class="hero">
+    <!-- This landing page content is shown when not logged in -->
+    <section id="landing" class="hero">
       <div class="container">
-        <!-- The alt text is updated to use the author’s name -->
-        <img src="images/author.jpg" alt="" id="author-image" class="circle responsive-img author-img">
-        <!-- The header text will be updated with the author name -->
-        <h1 class="white-text" id="site-author-header"></h1>
-        <!-- The introduction text is loaded from site.json -->
-        <p class="white-text flow-text" id="site-introduction"></p>
+        <h1>Welcome to Multi-Author Platform</h1>
+        <p>This system empowers authors to create and manage their own content—blogs, books, and more—through a single platform. Please log in or register to access your personalized dashboard.</p>
       </div>
-    </div>
-
-    <!-- Books Section -->
-    <div id="books" class="section">
+    </section>
+    <!-- Dashboard: Author's home page; initially hidden -->
+    <section id="dashboard" class="dashboard" style="display:none;">
       <div class="container">
-        <h2 class="center">Books</h2>
-        <div id="books-content">
-          <!-- Book cards will be injected here dynamically from JSON -->
+        <h2>Your Dashboard</h2>
+        <div id="dashboard-content">
+          <!-- Author-specific content loaded from the database via /api/author/{slug} -->
         </div>
       </div>
-    </div>
-
-    <!-- Philosophy Section -->
-    <div id="philosophy" class="section grey lighten-4">
-      <div class="container">
-        <h2 class="center">My Philosophy</h2>
-        <!-- External philosophy content loaded here -->
-        <div id="philosophy-content"></div>
-      </div>
-    </div>
-
-    <!-- About the Author Section -->
-    <div id="about" class="section">
-      <div class="container">
-        <h2 class="center">About the Author</h2>
-        <!-- External author content loaded here -->
-        <div id="author-content"></div>
-      </div>
-    </div>
-
-    <!-- Blog Section -->
-    <div id="blog" class="section">
-      <div class="container">
-        <h2 class="center">Blog</h2>
-        <div id="blog-content">
-          <!-- Blog cards will be injected here dynamically from JSON -->
-        </div>
-      </div>
-    </div>
-
-    <!-- Contact Section -->
-    <div id="contact" class="section grey lighten-4">
-      <div class="container">
-        <h2 class="center">Contact & Comments</h2>
-        <div class="row">
-          <div class="col s12 m6">
-            <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
-              <div class="input-field">
-                <input id="name" type="text" name="name" required>
-                <label for="name">Name</label>
-              </div>
-              <div class="input-field">
-                <input id="email" type="email" name="email" required>
-                <label for="email">Email</label>
-              </div>
-              <div class="input-field">
-                <textarea id="comment" name="comment" class="materialize-textarea" required></textarea>
-                <label for="comment">Comment</label>
-              </div>
-              <button type="submit" class="btn blue lighten-1">Send</button>
-            </form>
-          </div>
-          <div class="col s12 m6 center-align">
-            <h5>Follow Me</h5>
-            <!-- Social links will be injected here dynamically -->
-            <div id="social-links"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
   </main>
 
   <!-- Footer -->
   <footer class="page-footer blue lighten-1">
     <div class="container center">
-      <p>&copy; 2025 <span id="site-author-footer"></span>. All rights reserved.</p>
+      <p>&copy; 2025 Multi-Author Platform</p>
     </div>
   </footer>
 
-  <!-- Materialize JavaScript (with jQuery for convenience) -->
+  <!-- Include jQuery, Materialize JS -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script>
-    // Initialize Sidenav and Modal for mobile navigation and login
+    // Global variables for login state and author slug
+    let isLoggedIn = false;
+    let authorSlug = null;
+
+    // Update the author dropdown based on login status
+    function updateAuthorDropdown() {
+      const dropdown = document.getElementById('authorDropdown');
+      dropdown.innerHTML = '';
+      if (!isLoggedIn) {
+        // Not logged in: show only "Author Login"
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = "#authModal";
+        a.classList.add("modal-trigger");
+        a.textContent = "Author Login";
+        li.appendChild(a);
+        dropdown.appendChild(li);
+        document.getElementById('mobileLoginItem').textContent = "Author Login";
+      } else {
+        // Logged in: show "Properties" and "Logout"
+        const liProperties = document.createElement('li');
+        const aProperties = document.createElement('a');
+        aProperties.href = "#propertiesModal";
+        aProperties.classList.add("modal-trigger");
+        aProperties.textContent = "Properties";
+        liProperties.appendChild(aProperties);
+        dropdown.appendChild(liProperties);
+
+        const liLogout = document.createElement('li');
+        const aLogout = document.createElement('a');
+        aLogout.href = "#!";
+        aLogout.id = "logoutLink";
+        aLogout.textContent = "Logout";
+        liLogout.appendChild(aLogout);
+        dropdown.appendChild(liLogout);
+        document.getElementById('mobileLoginItem').textContent = "Logout";
+      }
+      M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), { coverTrigger: false });
+    }
+
+    // Load dashboard data for the logged-in author
+    function loadDashboard() {
+      if (!authorSlug) return;
+      fetch('/api/author/' + authorSlug)
+        .then(response => response.json())
+        .then(data => {
+          // For simplicity, we'll just display the author's name and a list of blog titles
+          let html = `<h3>Welcome, ${data.author.name}!</h3>`;
+          html += `<h4>Your Blogs:</h4><ul>`;
+          data.blogs.forEach(blog => {
+            html += `<li>${blog.title} (${blog.publish_date || 'N/A'})</li>`;
+          });
+          html += `</ul>`;
+          document.getElementById('dashboard-content').innerHTML = html;
+          // Hide landing, show dashboard
+          document.getElementById('landing').style.display = 'none';
+          document.getElementById('dashboard').style.display = 'block';
+        })
+        .catch(error => console.error('Error loading dashboard:', error));
+    }
+
+    // Initialize Materialize components
     document.addEventListener('DOMContentLoaded', function() {
-      var sidenavElems = document.querySelectorAll('.sidenav');
-      M.Sidenav.init(sidenavElems);
-      var modalElems = document.querySelectorAll('.modal');
-      M.Modal.init(modalElems);
+      M.Sidenav.init(document.querySelectorAll('.sidenav'));
+      M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), { coverTrigger: false });
+      M.Modal.init(document.querySelectorAll('.modal'));
+      M.Tabs.init(document.querySelectorAll('.tabs'));
+      updateAuthorDropdown();
+
+      // Check for stored token and authorSlug
+      const token = localStorage.getItem('authToken');
+      const slug = localStorage.getItem('authorSlug');
+      if (token && slug) {
+        isLoggedIn = true;
+        authorSlug = slug;
+        updateAuthorDropdown();
+        loadDashboard();
+      }
     });
 
-    // Fetch site configuration from data/site.json and update static elements
-    fetch('data/site.json')
-      .then(response => response.json())
-      .then(siteData => {
-        // Update document title
-        document.title = siteData.title;
-        // Update navbar brand with the author’s name
-        document.getElementById("site-author").textContent = siteData.author;
-        // Update hero section header and introduction
-        document.getElementById("site-author-header").textContent = siteData.author;
-        document.getElementById("site-introduction").textContent = siteData.introduction;
-        // Update the alt attribute of the author image
-        document.getElementById("author-image").setAttribute("alt", siteData.author);
-        // Update footer with the author’s name
-        document.getElementById("site-author-footer").textContent = siteData.author;
-        // Update color palette if provided in site.json
-        if (siteData.colorPalette) {
-          if (siteData.colorPalette.navbar) {
-            document.querySelector("nav").style.backgroundColor = siteData.colorPalette.navbar;
-          }
-          if (siteData.colorPalette.footer) {
-            document.querySelector("footer").style.backgroundColor = siteData.colorPalette.footer;
-          }
-          if (siteData.colorPalette.heroBackground) {
-            document.querySelector(".hero").style.background = siteData.colorPalette.heroBackground;
-          }
-        }
-      })
-      .catch(error => console.error("Error loading data/site.json:", error));
-
-    // Function to load external HTML content into placeholders
-    function loadHTML(id, url) {
-      fetch(url)
-        .then(response => response.text())
-        .then(html => {
-          document.getElementById(id).innerHTML = html;
-        })
-        .catch(error => console.error('Error loading ' + url + ':', error));
-    }
-    // Load external content into the philosophy and about sections
-    loadHTML('philosophy-content', 'partials/philosophy.html');
-    loadHTML('author-content', 'partials/author.html');
-
-    // Fetch books data from JSON and populate the Books Section dynamically as custom cards
-    fetch('data/books.json')
-      .then(response => response.json())
-      .then(data => {
-        let booksContent = document.getElementById("books-content");
-        let html = '';
-        data.forEach(book => {
-          html += `
-            <div class="col s12">
-              <div class="custom-card">
-                <div class="image-container">
-                  <img src="${book.image}" alt="${book.title}">
-                </div>
-                <div class="card-content">
-                  ${!book.published ? '<div class="overlay">Coming Soon</div>' : ''}
-                  <h5>${book.title}</h5>
-                  <p>${book.description}</p>
-                  ${book.published
-                    ? `<a href="${book.amazonUrl}" target="_blank" class="amazon-btn">Buy on Amazon</a>`
-                    : `<span class="amazon-btn disabled">Buy on Amazon</span>`}
-                </div>
-              </div>
-            </div>
-          `;
-        });
-        booksContent.innerHTML = html;
-      })
-      .catch(error => console.error('Error loading books JSON:', error));
-
-    // Fetch blog data from JSON and populate the Blog Section dynamically as custom cards with horizontal layout
-    fetch('data/blogs.json')
-      .then(response => response.json())
-      .then(data => {
-        let blogContent = document.getElementById("blog-content");
-        let html = '';
-        data.forEach(blog => {
-          html += `
-            <div class="col s12">
-              <div class="blog-card custom-card">
-                <div class="blog-image image-container">
-                  <img src="${blog.image}" alt="${blog.title}">
-                </div>
-                <div class="blog-content card-content">
-                  <h5>${blog.title}</h5>
-                  <h6>${blog.subtitle}</h6>
-                  <p>${blog.description}</p>
-                  <a href="blog-template.html?name=${blog.name}" class="btn blue lighten-1">Read More</a>
-                </div>
-              </div>
-            </div>
-          `;
-        });
-        blogContent.innerHTML = html;
-      })
-      .catch(error => console.error('Error loading blogs JSON:', error));
-
-    // Fetch social links from JSON and populate the social links section dynamically
-    fetch('data/social.json')
-      .then(response => response.json())
-      .then(data => {
-        let socialLinksContainer = document.getElementById("social-links");
-        let html = '';
-        data.forEach(site => {
-          html += `
-            <a href="${site.url}" target="_blank" class="btn-floating ${site.color}" style="display: flex; align-items: center; justify-content: center;">
-              <img src="${site.icon}" alt="${site.name} icon" style="width:26px; height:26px; padding:2px;">
-            </a>
-          `;
-        });
-        socialLinksContainer.innerHTML = html;
-      })
-      .catch(error => console.error('Error loading social JSON:', error));
-
-    // Handle local login form submission using jQuery
+    // Handle Authentication Form Submissions
     $(document).ready(function() {
+      // Local Login Form
       $('#localLoginForm').on('submit', function(e) {
         e.preventDefault();
         const username = $('#loginUsername').val();
         const password = $('#loginPassword').val();
         $.ajax({
-          url: '/api/login',  // Adjust if necessary
+          url: '/api/login',
           method: 'POST',
           contentType: 'application/json',
           data: JSON.stringify({ username, password }),
           success: function(response) {
             M.toast({html: 'Login successful!', classes: 'green'});
-            // Store token if needed, update UI, etc.
-            var instance = M.Modal.getInstance($('#loginModal'));
-            instance.close();
+            // Store token and authorSlug; assume response contains slug.
+            localStorage.setItem('authToken', response.token);
+            localStorage.setItem('authorSlug', response.slug);
+            isLoggedIn = true;
+            authorSlug = response.slug;
+            updateAuthorDropdown();
+            M.Modal.getInstance($('#authModal')).close();
+            loadDashboard();
           },
           error: function(err) {
             M.toast({html: 'Login failed. Please try again.', classes: 'red'});
@@ -459,10 +353,94 @@
         });
       });
 
-      // Handle OAuth login button click
+      // Registration Form
+      $('#registerForm').on('submit', function(e) {
+        e.preventDefault();
+        const username = $('#regUsername').val();
+        const email = $('#regEmail').val();
+        const password = $('#regPassword').val();
+        $.ajax({
+          url: '/api/register',
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({ username, email, password }),
+          success: function(response) {
+            M.toast({html: 'Registration successful!', classes: 'green'});
+            // Store token and slug from response.
+            localStorage.setItem('authToken', 'secret-token'); // replace with actual token if provided
+            localStorage.setItem('authorSlug', response.slug);
+            isLoggedIn = true;
+            authorSlug = response.slug;
+            updateAuthorDropdown();
+            M.Modal.getInstance($('#authModal')).close();
+            loadDashboard();
+          },
+          error: function(err) {
+            M.toast({html: 'Registration failed. Please try again.', classes: 'red'});
+          }
+        });
+      });
+
+      // Forgot Password Form
+      $('#forgotForm').on('submit', function(e) {
+        e.preventDefault();
+        const email = $('#forgotEmail').val();
+        $.ajax({
+          url: '/api/forgot-password',
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({ email }),
+          success: function(response) {
+            M.toast({html: 'Password reset email sent!', classes: 'green'});
+            M.Modal.getInstance($('#authModal')).close();
+          },
+          error: function(err) {
+            M.toast({html: 'Failed to send password reset email.', classes: 'red'});
+          }
+        });
+      });
+
+      // OAuth Login Button (if using a database)
       $('#oauthLogin').on('click', function() {
-        // Redirect to your OAuth endpoint
-        window.location.href = '/login/google';  // Adjust as needed
+        window.location.href = '/login/google';
+      });
+
+      // Properties Form Submission
+      $('#propertiesForm').on('submit', function(e) {
+        e.preventDefault();
+        const name = $('#propName').val();
+        const email = $('#propEmail').val();
+        const username = $('#propUsername').val();
+        const password = $('#propPassword').val();
+        $.ajax({
+          url: '/api/properties',
+          method: 'PUT',
+          contentType: 'application/json',
+          data: JSON.stringify({ name, email, username, password }),
+          success: function(response) {
+            M.toast({html: 'Properties updated!', classes: 'green'});
+            // Update stored authorSlug if username changes.
+            localStorage.setItem('authorSlug', response.slug);
+            M.Modal.getInstance($('#propertiesModal')).close();
+            loadDashboard();
+          },
+          error: function(err) {
+            M.toast({html: 'Failed to update properties.', classes: 'red'});
+          }
+        });
+      });
+
+      // Logout handling
+      $(document).on('click', '#logoutLink', function(e) {
+        e.preventDefault();
+        isLoggedIn = false;
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('authorSlug');
+        updateAuthorDropdown();
+        // Clear dashboard and show landing page
+        document.getElementById('dashboard').style.display = 'none';
+        document.getElementById('landing').style.display = 'block';
+        M.toast({html: 'Logged out successfully.', classes: 'green'});
       });
     });
   </script>

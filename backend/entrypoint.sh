@@ -1,20 +1,29 @@
 #!/bin/bash
 set -e
 
-echo "Waiting for PostgreSQL to start..."
+# --- (Optional) If using a combined container with PostgreSQL initialization ---
+# For a separated system, you do not need to initialize or alter PostgreSQL here.
+#
+# If you previously had PostgreSQL initialization commands here, remove them.
+#
+# -------------------------------------------------------------
 
-# Wait until PostgreSQL is reachable (uses the container name 'db' from docker-compose)
-while ! nc -z db 5432; do
-  sleep 1
-done
+# Wait for the PostgreSQL container (or service) to be available.
+echo "Waiting for PostgreSQL to be available..."
+sleep 10
 
-echo "PostgreSQL is up and running."
+# Set the FLASK_APP environment variable so that the Flask CLI can find your application.
+export FLASK_APP=main.py
 
-# Run the script to check/create the database
+echo "Running database creation script..."
 python create_db.py
 
-# Apply any pending migrations (Flask-Migrate)
+echo "Applying database migrations..."
+# Use the Flask CLI with the FLASK_APP set; if needed, you can also explicitly specify --app.
 flask db upgrade
 
-# Finally, start the Flask application
-python app.py
+echo "Seeding the database..."
+python seed_db.py
+
+echo "Starting the Flask application..."
+python main.py
